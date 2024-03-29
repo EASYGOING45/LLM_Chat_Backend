@@ -1,0 +1,19 @@
+{
+  "template": "https://github.com/TencentBlueKing/bk-resource.git",
+  "commit": "5a22563e95d9757e0b767dc9850f6f8cb9c1958c",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "app_id": "llm-chat",
+      "project_name": "LLM_Chat_Backend",
+      "python_version": "3.10.5",
+      "_copy_without_render": [
+        "static",
+        "templates",
+        "api"
+      ],
+      "_template": "https://github.com/TencentBlueKing/bk-resource.git"
+    }
+  },
+  "directory": "template"
+}
