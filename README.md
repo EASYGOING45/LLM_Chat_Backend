@@ -20,6 +20,9 @@ extra-index-url=http://mirrors.cloud.tencent.com/pypi/simple/
 trusted-host = mirrors.tencent.com, mirrors.cloud.tencent.com
 ```
 
+#### HF镜像站
+https://hf-mirror.com/
+
 PIP 版本需要满足 `pip==20.2.3`，在 PaaS 中增加环境变量 `PIP_VERSION=20.2.3` 声明，本地可以使用 `pip install --upgrade pip==20.2.3` 安装指定版本
 
 #### 安装依赖
