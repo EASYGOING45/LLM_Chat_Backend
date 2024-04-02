@@ -73,11 +73,7 @@ def load_settings(module_path: str, raise_exception: bool = True):
                 # mix global setting and module setting
                 globals()[setting] = (
                     *globals()[setting],
-                    *(
-                        _s
-                        for _s in getattr(module, setting)
-                        if _s not in globals()[setting]
-                    )
+                    *(_s for _s in getattr(module, setting) if _s not in globals()[setting]),
                 )
             else:
                 globals()[setting] = getattr(module, setting)
