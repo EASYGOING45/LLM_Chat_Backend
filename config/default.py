@@ -6,12 +6,7 @@ from blueapps.conf.default_settings import *  # noqa
 from blueapps.conf.log import get_logging_config_dict
 
 # 请在这里加入你的自定义 APP
-INSTALLED_APPS += (
-    "corsheaders",
-    "bk_resource",
-    "rest_framework",
-    "drf_yasg",
-)
+INSTALLED_APPS += ("corsheaders", "bk_resource", "rest_framework", "drf_yasg", "modules.llm_chat.apps.LlmChatConfig")
 
 # 跨域中间件
 MIDDLEWARE = ("corsheaders.middleware.CorsMiddleware",) + MIDDLEWARE

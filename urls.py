@@ -20,6 +20,13 @@ schema_view = get_schema_view(
     permission_classes=(SwaggerPermission,),
 )
 
+
+def get_status(request):
+    from bk_resource import api
+
+    return api.xinference.get_status()
+
+
 urlpatterns = [
     # 出于安全考虑，默认屏蔽admin访问路径。
     # 开启前请修改路径随机内容，降低被猜测命中几率，提升安全性
@@ -27,6 +34,8 @@ urlpatterns = [
     path("account/", include("blueapps.account.urls")),
     path("swagger/", schema_view.with_ui(cache_timeout=0), name="schema-swagger-ui"),
     path("i18n/", include("django.conf.urls.i18n")),
+    path("api/v1/", include("modules.urls")),
+    path("status/", get_status),
 ]
 
 for _module in settings.DEPLOY_MODULE:

@@ -9,5 +9,5 @@ ENTRY_DATA = {
     "REMOTE_STATIC_URL": "/static/remote/",
     "STATIC_URL": "/static/",
     "STATIC_VERSION": "1.0",
-    "LOGIN_URL": ConfFixture.LOGIN_URL
+    "LOGIN_URL": ConfFixture.LOGIN_URL,
 }

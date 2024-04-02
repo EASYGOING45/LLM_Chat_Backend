@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from tests.base import TestCase
 from django.test import override_settings
 
+from tests.base import TestCase
 from tests.constants import TEST_MIDDLEWARE
 from tests.default.entry.constants import ENTRY_DATA
 
