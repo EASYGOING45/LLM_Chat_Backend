@@ -18,3 +18,16 @@ class GetModelInfo(Resource):
         data = api.xinference.get_model_info(model_uid=validated_request_data.get("model_uid"))
         # data = api.xinference.get_status()
         return data
+
+
+class GetRunningModels(Resource):
+    """
+    查询可用模型
+    """
+
+    name = gettext_lazy("查询可用模型")
+    RequestSerializer = None
+
+    def perform_request(self, validated_request_data):
+        data = api.xinference.get_models_list()
+        return data
