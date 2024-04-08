@@ -130,3 +130,12 @@ class GetModelInfo(LLMBaseResource):
     action = "v1/models/{model_uid}"
     method = "GET"
     url_keys = ["model_uid"]
+
+
+class ChatWithModel(LLMBaseResource):
+    """
+    实时对话交互
+    """
+
+    action = "v1/chat/completions"
+    method = "POST"
