@@ -8,6 +8,8 @@ from modules.llm_chat.serializers import (
     GetModelInfoRequestSerializer,
 )
 
+# TODO：日志&异常处理&序列化器补足&单元测试 0408
+
 
 class GetModelInfo(Resource):
     """
@@ -19,7 +21,6 @@ class GetModelInfo(Resource):
 
     def perform_request(self, validated_request_data):
         data = api.xinference.get_model_info(model_uid=validated_request_data.get("model_uid"))
-        # data = api.xinference.get_status()
         return data
 
 

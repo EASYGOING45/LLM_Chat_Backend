@@ -6,3 +6,5 @@ TEST_MIDDLEWARE = (
     # local
     "blueapps.utils.request_provider.RequestProvider",
 )
+
+TEST_MODEL_UID = "123abc"
