@@ -1,7 +1,8 @@
 # llm-chat
 
 ## 一、概述
-LLM-Chat 大模型后端服务 Backend
+LLM-Chat 大模型后端服务 Backend Server
+tests:添加单元测试与异常处理
 
 ## 二、快速开始
  

@@ -10,4 +10,6 @@ class LlmChatViewSet(ResourceViewSet):
         ResourceRoute("GET", resource.llm_chat.get_model_info, endpoint="model_info"),
         # 查询可用模型列表
         ResourceRoute("GET", resource.llm_chat.get_running_models, endpoint="models_list"),
+        # 模型对话交互
+        ResourceRoute("POST", resource.llm_chat.chat_with_model, endpoint="chat"),
     ]

@@ -23,3 +23,5 @@ static_root
 config/local_settings.py
 dev
 .env
+.gtm.yaml
+.gtmproject.yaml
