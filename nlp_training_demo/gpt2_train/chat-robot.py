@@ -1,12 +1,15 @@
 import gradio as gr
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, AutoTokenizer
 
+# 加载预训练模型
 model_name_or_path = "checkpoint-42000"
 tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
 
+# 模型初始化
 model = GPT2LMHeadModel.from_pretrained(model_name_or_path, pad_token_id=tokenizer.eos_token_id)
 
 
+# 模型推理
 def infer_model(txt: str) -> str:
     # encode context the generation is conditioned on
     input_ids = tokenizer.encode(txt, return_tensors='pt')
@@ -24,6 +27,7 @@ def infer_model(txt: str) -> str:
     return result
 
 
+# 模型预测，返回结果，包含历史对话信息
 def predict(input, history=[]):
     respose = infer_model(input)
     res = [(input, respose)]
