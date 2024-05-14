@@ -10,7 +10,7 @@ tests:添加单元测试与异常处理
 
 #### 环境依赖
 
-Python 3.10.5、MySQL 5.7+、Redis 3.2+
+Python 3.10.5、MySQL 5.7+、Redis 3.2+、Xinference
 
 #### PIP源
 
