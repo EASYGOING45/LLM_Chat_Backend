@@ -10,3 +10,6 @@ USER_MANAGE_URL = get_endpoint("usermanage", APIProvider.ESB)
 
 # Xinference
 XINFERENCE_URL = os.getenv("BKAPP_LLM_API_ENDPOINT")
+
+# CLOSE_AI
+CLOSE_AI_URL = os.getenv("BKAPP_CLOSE_API_ENDPOINT")

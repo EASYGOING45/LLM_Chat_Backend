@@ -8,6 +8,7 @@ from modules.llm_chat.serializers import (
     GetModelInfoRequestSerializer,
 )
 
+
 # TODO：日志&异常处理&序列化器补足&单元测试 0408
 
 
@@ -49,4 +50,16 @@ class ChatWithModel(Resource):
         messages = validated_request_data.get("messages")  # 对话上下文 PROMPT
         model = validated_request_data.get("model")  # 对话目标模型
         data = api.xinference.chat_with_model(messages=messages, model=model)
+        return data
+
+
+class ChatWithCloseAi(Resource):
+    """
+    CLose-AI 模型对话交互
+    """
+    name = gettext_lazy("CloseAI模型交互")
+
+    def perform_request(self, validated_request_data):
+        messages = validated_request_data.get("messages")
+        data = api.close_ai.chat_with_completions(model="gpt-3.5-turbo", messages=messages)
         return data

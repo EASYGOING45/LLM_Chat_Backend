@@ -13,6 +13,7 @@ INSTALLED_APPS += (
     "drf_yasg",
     "modules.llm_chat.apps.LlmChatConfig",
     "modules.user_manage.apps.UserManageConfig",
+    "modules.close_ai.apps.CloseAiConfig"
 )
 
 # 跨域中间件
@@ -22,6 +23,9 @@ MIDDLEWARE += ()
 
 # 默认数据库自增字段
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# 环境变量
+CLOSE_API_KEY = os.getenv("CLOSE_API_KEY")
 
 # 所有环境的日志级别可以在这里配置
 LOG_LEVEL = "INFO"
