@@ -13,7 +13,7 @@ INSTALLED_APPS += (
     "drf_yasg",
     "modules.llm_chat.apps.LlmChatConfig",
     "modules.user_manage.apps.UserManageConfig",
-    "modules.close_ai.apps.CloseAiConfig"
+    "modules.closeai.apps.CloseaiConfig"
 )
 
 # 跨域中间件
