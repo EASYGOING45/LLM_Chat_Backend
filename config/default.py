@@ -26,6 +26,9 @@ MIDDLEWARE += ()  # noqa
 SECRET_ID = os.getenv("TENCENT_SECRET_ID")
 SECRET_KEY = os.getenv("TENCENT_SECRET_KEY")
 
+# 知识库
+KNOWLEDGE_API_KEY = os.getenv("BKAPP_KNOWLEDGE_API_KEY")
+
 # # TODO：在文档中需要处理CORS与CSRF问题，待跟进README
 # # 在 response 添加 Access-Control-Allow-Credentials, 即允许跨域使用 cookies
 CORS_ALLOW_CREDENTIALS = True
