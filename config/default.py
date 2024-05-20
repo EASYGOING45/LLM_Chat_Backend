@@ -24,7 +24,7 @@ MIDDLEWARE += ()  # noqa
 
 # 腾讯云API鉴权
 SECRET_ID = os.getenv("TENCENT_SECRET_ID")
-SECRET_KEY = os.getenv("TENCENT_SECRET_KEY")
+API_SECRET_KEY = os.getenv("TENCENT_SECRET_KEY")
 
 # 知识库
 KNOWLEDGE_API_KEY = os.getenv("BKAPP_KNOWLEDGE_API_KEY")

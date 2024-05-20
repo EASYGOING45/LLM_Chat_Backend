@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy
 
 from modules.llm_chat.serializers import (
     ChatWithModelRequestSerializer,
-    GetModelInfoRequestSerializer,
+    GetModelInfoRequestSerializer, ChatWithThirdPartyRequestSerializer,
 )
 from core.utils import get_sentiment
 
@@ -59,6 +59,7 @@ class ChatWithCloseAi(Resource):
     自训练模型交互，支持选择Model
     """
     name = gettext_lazy("自训练模型交互，支持选择Model")
+    RequestSerializer = ChatWithThirdPartyRequestSerializer
 
     def perform_request(self, validated_request_data):
         messages = validated_request_data.get("messages")

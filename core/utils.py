@@ -19,8 +19,9 @@ def get_sentiment(text):
     腾讯云-情感分析v2
     """
     try:
-        cred = credential.Credential(settings.SECRET_ID, settings.SECRET_KEY)
-
+        SECRET_ID = settings.SECRET_ID
+        SECRET_KEY = settings.API_SECRET_KEY
+        cred = credential.Credential(SECRET_ID, SECRET_KEY)
         httpProfile = HttpProfile()
         httpProfile.endpoint = "nlp.tencentcloudapi.com"
         clientProfile = ClientProfile()
@@ -70,4 +71,3 @@ def import_csv_data():
             print(f'Successfully imported {filename}')
 
     print('All files have been imported successfully')
-

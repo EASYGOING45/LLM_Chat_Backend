@@ -27,3 +27,11 @@ class ChatWithModelRequestSerializer(serializers.Serializer):
 
     messages = HistoryMessageSerializer(many=True, required=True, label=gettext_lazy("历史上下文消息"))
     model = serializers.CharField(required=True, label=gettext_lazy("模型UID"))
+
+
+class ChatWithThirdPartyRequestSerializer(serializers.Serializer):
+    """
+    模型交互对话-请求序列化器
+    """
+
+    messages = HistoryMessageSerializer(many=True, required=True, label=gettext_lazy("历史上下文消息"))

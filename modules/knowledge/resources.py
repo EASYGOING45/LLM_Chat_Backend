@@ -3,6 +3,8 @@
 from bk_resource import Resource, api
 from django.utils.translation import gettext_lazy
 
+from modules.knowledge.serializers import ChatWithKnowledgeRequestSerializer
+
 
 class GetKnowledgeList(Resource):
     """
@@ -20,6 +22,7 @@ class ChatWithKnowledge(Resource):
     知识库对话交互
     """
     name = gettext_lazy('知识库对话交互')
+    RequestSerializer = ChatWithKnowledgeRequestSerializer
 
     def perform_request(self, validated_request_data):
         chat_id = validated_request_data.get('chatId')
