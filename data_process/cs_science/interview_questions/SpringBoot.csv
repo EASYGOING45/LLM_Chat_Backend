@@ -1,0 +1,91 @@
+﻿问题,回答,所属分类
+SpringBoot 面试题阅读指南,"大家好，我是帅地。
+为了方便大家复习，这些面试题的展示采取了右边面试题目，左边答案的方式，方便大家按需查看。
+由于手机端不支持这种展示方式，当然，为了手机方便阅读，下面会贴出所有面试题答案链接，不过大家最好在 PC 电脑端阅读哈，相关面试题还会持续更新，尽量补充完善起来，建议收藏帅地的网站哦。
+1. 什么是 Spring Boot？
+1. 什么是 Spring Boot？
+2. SpringBoot有哪些优点？
+2. SpringBoot有哪些优点？
+3. SpringBoot有哪些缺点？
+3. SpringBoot有哪些缺点？
+4. Spring Boot 的核心配置文件有哪几个？它们的区别是什么？
+4. Spring Boot 的核心配置文件有哪几个？它们的区别是什么？
+5. Spring Boot 的配置文件有哪几种格式？它们有什么区别？
+5. Spring Boot 的配置文件有哪几种格式？它们有什么区别？
+6. Spring Boot 的核心注解是哪个？它主要由哪几个注解组成的？
+6. Spring Boot 的核心注解是哪个？它主要由哪几个注解组成的？
+7. 开启 Spring Boot 特性有哪几种方式？
+7. 开启 Spring Boot 特性有哪几种方式？
+8. 什么是JavaConfig？
+8. 什么是JavaConfig？
+9. SpringBoot自动配置原理是什么？
+9. SpringBoot自动配置原理是什么？
+10. SpringBoot、Spring MVC和Spring有什么区别？
+10. SpringBoot、Spring MVC和Spring有什么区别？
+11. SpringBoot启动时都做了什么?
+11. SpringBoot启动时都做了什么?
+12. SpringBoot 需要独立的容器运行吗？
+12. SpringBoot 需要独立的容器运行吗？
+13. 什么是YAML？
+13. 什么是YAML？
+14. YAML 配置的优势在哪里 ?
+14. YAML 配置的优势在哪里 ?
+15. SpringBoot 是否可以使用 XML 配置 ?
+15. SpringBoot 是否可以使用 XML 配置 ?
+16. SpringBoot核心配置文件是什么？
+16. SpringBoot核心配置文件是什么？
+17. bootstrap.properties和application.properties 有何区别 ?
+17. bootstrap.properties和application.properties 有何区别 ?
+18. 什么是Spring Profiles？
+18. 什么是Spring Profiles？
+19. 如何在自定义端口上运行SpringBoot应用程序？
+19. 如何在自定义端口上运行SpringBoot应用程序？
+20. 如何实现SpringBoot应用程序的安全性？
+20. 如何实现SpringBoot应用程序的安全性？
+21. 比较一下Spring Security 和Shiro各自的优缺点 ?
+21. 比较一下Spring Security 和Shiro各自的优缺点 ?
+22. SpringBoot中如何解决跨域问题 ?
+22. SpringBoot中如何解决跨域问题 ?
+23. 什么是 CSRF 攻击？
+23. 什么是 CSRF 攻击？
+24. SpringBoot 中的监视器是什么
+24. SpringBoot 中的监视器是什么
+25. 如何在SpringBoot中禁用Actuator端点安全性？
+25. 如何在SpringBoot中禁用Actuator端点安全性？
+26. 如何监视所有SpringBoot微服务？
+26. 如何监视所有SpringBoot微服务？
+27. 什么是 WebSockets？
+27. 什么是 WebSockets？
+28. 什么是 Spring Data?
+28. 什么是 Spring Data?
+29. 什么是 Spring Batch？
+29. 什么是 Spring Batch？
+30. 什么是 FreeMarker 模板？
+30. 什么是 FreeMarker 模板？
+31. 如何集成 SpringBoot和ActiveMQ？
+31. 如何集成 SpringBoot和ActiveMQ？
+32. Swagger用过麽？他用来做什么？
+32. Swagger用过麽？他用来做什么？
+33. 前后端分离，如何维护接口文档 ?
+33. 前后端分离，如何维护接口文档 ?
+34. SpringBoot项目如何热部署？
+34. SpringBoot项目如何热部署？
+35. SpringBoot 中的starter到底是什么 ?
+35. SpringBoot 中的starter到底是什么 ?
+36. spring-boot-starter-parent 有什么用?
+36. spring-boot-starter-parent 有什么用?
+37. SpringBoot 打成的jar和普通的jar有什么区别 ?
+37. SpringBoot 打成的jar和普通的jar有什么区别 ?
+38. 如何使用SpringBoot实现异常处理？
+38. 如何使用SpringBoot实现异常处理？
+39. 如何使用SpringBoot实现分页和排序？
+39. 如何使用SpringBoot实现分页和排序？
+40. 微服务中如何实现 session 共享?
+40. 微服务中如何实现 session 共享?
+41. SpringBoot 中如何实现定时任务?
+41. SpringBoot 中如何实现定时任务?
+42. Spring Boot 中的 starter 到底是什么 ?
+42. Spring Boot 中的 starter 到底是什么 ?
+43. 微服务中如何实现 session 共享 ?
+43. 微服务中如何实现 session 共享 ?
+SpringBoot",

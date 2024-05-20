@@ -1,0 +1,165 @@
+﻿问题,回答,所属分类
+谈谈你对 MVC 模式的理解？,"MVC 是 Model — View — Controler 的简称，它是一种架构模式，它分离了表现与交互。它被分为三个核心部件：模型、视图、控制器。
+
+Model（模型）：是程序的主体部分，主要包含业务数据和业务逻辑。在模型层，还会涉及到用户发布的服务，在服务中会根据不同的业务需求，更新业务模型中的数据。
+View（视图）：是程序呈现给用户的部分，是用户和程序交互的接口，用户会根据具体的业务需求，在 View 视图层输入自己特定的业务数据，并通过界面的事件交互，将对应的输入参数提交给后台控制器进行处理。
+Controller（控制器）：Controller 是用来处理用户输入数据，以及更新业务模型的部分。控制器中接收了用户与界面交互时传递过来的数据，并根据数据业务逻辑来执行服务的调用和更新业务模型的数据和状态。
+SpringMVC面试题",
+SpringMVC 的工作原理/执行流程？,"简单来说：客户端发送请求-> 前端控制器 DispatcherServlet 接受客户端请求 -> 找到处理器映射 HandlerMapping 解析请求对应的 Handler -> HandlerAdapter 会根据 Handler 来调用真正的处理器来处理请求，并处理相应的业务逻辑 -> 处理器返回一个模型视图 ModelAndView -> 视图解析器进行解析 -> 返回一个视图对象 -> 前端控制器 DispatcherServlet 渲染数据（Model）-> 将得到视图对象返回给用户。
+
+上图用于辅助理解，面试时可用下列 8 步描述 SpringMVC 运行流程：
+DispatcherServlet 对请求 URL 进行解析，得到请求资源标识符（URI）。然后根据该 URI，调用 HandlerMapping 获得该 Handler 配置的所有相关的对象（包括 Handler 对象以及 Handler 对象对应的拦截器），最后以 HandlerExecutionChain 对象的形式返回；
+DispatcherServlet 根据获得的 Handler，选择一个合适的HandlerAdapter；（附注：如果成功获得 HandlerAdapter 后，此时将开始执行拦截器的 preHandler(…)方法）
+提取 Request 中的模型数据，填充 Handler 入参，开始执行Handler（Controller)。在填充 Handler 的入参过程中，根据你的配置，Spring 将帮你做一些额外的工作：
+（1）HttpMessageConveter：将请求消息（如：Json、xml 等数据）转换成一个对象，将对象转换为指定的响应信息；
+（2）数据转换：对请求消息进行数据转换。如：String 转换成 Integer、Double 等；
+（3）数据格式化：对请求消息进行数据格式化。如：将字符串转换成格式化数字或格式化日期等；
+（4）数据验证：验证数据的有效性（长度、格式等），验证结果存储到 BindingResult 或 Error 中;
+Handler 执行完成后，向 DispatcherServlet 返回一个 ModelAndView 对象；
+根据返回的 ModelAndView，选择一个适合的 ViewResolver（必须是已经注册到 Spring 容器中的 ViewResolver)返回给DispatcherServlet；
+ViewResolver 结合 Model 和 View，来渲染视图；
+将渲染结果返回给客户端。
+SpringMVC面试题",
+SpringMVC 的核心组件有哪些？,"作用：Spring MVC 的入口函数。接收请求，响应结果，相当于转发器，中央处理器。有了 DispatcherServlet 减少了其它组件之间的耦合度。用户请求到达前端控制器，它就相当于 MVC 模式中的 C，DispatcherServlet 是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet 的存在降低了组件之间的耦合性。
+作用：根据请求的 url 查找 Handler。HandlerMapping 负责根据用户请求找到 Handler 即处理器（Controller），SpringMVC 提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
+作用：按照特定规则（HandlerAdapter 要求的规则）去执行 Handler。通过 HandlerAdapter 对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。
+注意：编写 Handler 时按照 HandlerAdapter 的要求去做，这样适配器才可以去正确执行 Handler。Handler 是继 DispatcherServlet 前端控制器的后端控制器，在 DispatcherServlet 的控制下 Handler 对具体的用户请求进行处理。由于 Handler 涉及到具体的用户业务请求，所以一般情况需要工程师根据业务需求开发 Handler。
+作用：进行视图解析，根据逻辑视图名解析成真正的视图（View ）。View Resolver 负责将处理结果生成 View 视图，View Resolver 首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成 View 视图对象，最后对 View 进行渲染将处理结果通过页面展示给用户。SpringMVC 框架提供了很多的 View 视图类型，包括：jstlView、freemarkerView、pdfView 等。一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由工程师根据业务需求开发具体的页面。
+View 是一个接口，实现类支持不同的 View 类型（jsp、freemarker…）。
+
+  注意：处理器 Handler（也就是我们平常说的 Controller 控制器）以及视图层 View 都是需要我们自己手动开发的。其他的一些组件比如：前端控制器 DispatcherServlet、处理器映射器 HandlerMapping、处理器适配器 HandlerAdapter 等等都是框架提供给我们的，不需要自己手动开发。
+
+SpringMVC面试题",
+SpringMVC 常用的注解有哪些？,"@RequestMapping：用于处理请求 url 映射的注解，可用于类或方法上。用于类上，则表示类中的所有响应请求的方法都是以该地址作为父路径；
+@RequestBody：注解实现接收 HTTP 请求的 json 数据，将 json 转换为 Java 对象；
+@ResponseBody：注解实现将 Controller 方法返回对象转化为 json 对象响应给客户。
+SpringMVC面试题",
+@RequestMapping 的作用是什么？,"RequestMapping 是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。RequestMapping 注解有六个属性，下面我们把它分成三类进行说明。
+value、method：
+method：指定请求的method类型， GET、POST、PUT、DELETE 等；
+consumes、produces：
+produces：指定返回的内容类型，仅当 request 请求头中的（Accept）类型中包含该指定类型才返回；
+params、header：
+params：指定 request 中必须包含某些参数值是，才让该方法处理。
+headers：指定 request 中必须包含某些指定的 header 值，才能让该方法处理请求。
+SpringMVC面试题",
+如何解决 POST 请求中文乱码问题，GET 的又如何处理呢？,"1.解决 POST 请求乱码问题：在 web.xml 中配置一个 CharacterEncodingFilter 过滤器，设置成 utf-8；
+（1）修改 tomcat 配置文件添加编码与工程编码一致，如下：
+“`java
+<ConnectorURIEncoding=""utf-8"" connectionTimeout=""20000"" port=""8080"" protocol=""HTTP/1.1"" redirectPort
+ “`
+（2）对参数进行重新编码：
+“`java
+String userName = new String(request.getParamter(""userName"").getBytes(""ISO8859-1""),""utf-8"")
+ “`
+SpringMVC面试题",
+SpringMVC 的控制器是不是单例模式，如果是会有什么问题，怎么解决？,"是单例模式，所以在多线程访问的时候有线程安全问题。但是不要使用同步，会影响性能，解决方案是在控制器里面不能写字段。
+SpringMVC面试题",
+SpringMVC 怎么样设定重定向和转发的？,"“`java
+</p></li>
+<li>重定向：在返回值前面加 ""redirect:""，譬如：
+“`
+
+SpringMVC面试题",
+SpringMVC 里面拦截器是怎么写的？,"方法一：实现 HandlerInterceptor 接口；
+方法二：继承适配器类，接着在接口方法当中，实现处理逻辑，然后在 SpringMVC 的配置文件中配置拦截器即可。
+SpringMVC面试题",
+SpringMVC 和 Struts2 的区别有哪些?,"SpringMVC 的入口是一个 Servlet 即前端控制器（DispatchServlet），而 Struts2 入口是一个 filter 过虑器（StrutsPrepareAndExecuteFilter）；
+SpringMVC 是基于方法开发（一个 url 对应一个方法），请求参数传递到方法的形参，可以设计为单例或多例（建议单例），Struts2 是基于类开发，传递参数是通过类的属性，只能设计为多例；
+Struts2 采用值栈存储请求和响应的数据，通过 OGNL 存取数据；SpringMVC 通过参数解析器是将 request 请求内容解析，并给方法形参赋值，将数据和视图封装成 ModelAndView 对象，最后又将 ModelAndView 中的模型数据通过 request 域传输到页面。jsp 视图解析器默认使用 jstl。
+SpringMVC面试题",
+SpringMVC,"MVC 是 Model — View — Controller 的简称，它是一种架构模式，它分离了表现与交互。它被分为三个核心部件：模型、视图、控制器。
+
+Model（模型）：是程序的主体部分，主要包含业务数据和业务逻辑。在模型层，还会涉及到用户发布的服务，在服务中会根据不同的业务需求，更新业务模型中的数据。
+View（视图）：是程序呈现给用户的部分，是用户和程序交互的接口，用户会根据具体的业务需求，在 View 视图层输入自己特定的业务数据，并通过界面的事件交互，将对应的输入参数提交给后台控制器进行处理。
+Controller（控制器）：Controller 是用来处理用户输入数据，以及更新业务模型的部分。控制器中接收了用户与界面交互时传递过来的数据，并根据数据业务逻辑来执行服务的调用和更新业务模型的数据和状态。
+简单来说：客户端发送请求-> 前端控制器 DispatcherServlet 接受客户端请求 -> 找到处理器映射 HandlerMapping 解析请求对应的 Handler -> HandlerAdapter 会根据 Handler 来调用真正的处理器来处理请求，并处理相应的业务逻辑 -> 处理器返回一个模型视图 ModelAndView -> 视图解析器进行解析 -> 返回一个视图对象 -> 前端控制器 DispatcherServlet 渲染数据（Model）-> 将得到视图对象返回给用户。
+
+上图用于辅助理解，面试时可用下列 8 步描述 SpringMVC 运行流程：
+DispatcherServlet 对请求 URL 进行解析，得到请求资源标识符（URI）。然后根据该 URI，调用 HandlerMapping 获得该 Handler 配置的所有相关的对象（包括 Handler 对象以及 Handler 对象对应的拦截器），最后以 HandlerExecutionChain 对象的形式返回；
+DispatcherServlet 根据获得的 Handler，选择一个合适的HandlerAdapter；（附注：如果成功获得 HandlerAdapter 后，此时将开始执行拦截器的 preHandler(…)方法）
+提取 Request 中的模型数据，填充 Handler 入参，开始执行Handler（Controller)。在填充 Handler 的入参过程中，根据你的配置，Spring 将帮你做一些额外的工作：
+（1）HttpMessageConveter：将请求消息（如：Json、xml 等数据）转换成一个对象，将对象转换为指定的响应信息；
+（2）数据转换：对请求消息进行数据转换。如：String 转换成 Integer、Double 等；
+（3）数据格式化：对请求消息进行数据格式化。如：将字符串转换成格式化数字或格式化日期等；
+（4）数据验证：验证数据的有效性（长度、格式等），验证结果存储到 BindingResult 或 Error 中;
+根据返回的 ModelAndView，选择一个适合的 ViewResolver（必须是已经注册到 Spring 容器中的 ViewResolver)返回给DispatcherServlet；
+ViewResolver 结合 Model 和 View，来渲染视图；
+将渲染结果返回给客户端。
+作用：Spring MVC 的入口函数。接收请求，响应结果，相当于转发器，中央处理器。有了 DispatcherServlet 减少了其它组件之间的耦合度。用户请求到达前端控制器，它就相当于 MVC 模式中的 C，DispatcherServlet 是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet 的存在降低了组件之间的耦合性。
+作用：根据请求的 url 查找 Handler。HandlerMapping 负责根据用户请求找到 Handler 即处理器（Controller），SpringMVC 提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
+作用：按照特定规则（HandlerAdapter 要求的规则）去执行 Handler。通过 HandlerAdapter 对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。
+注意：编写 Handler 时按照 HandlerAdapter 的要求去做，这样适配器才可以去正确执行 Handler。Handler 是继 DispatcherServlet 前端控制器的后端控制器，在 DispatcherServlet 的控制下 Handler 对具体的用户请求进行处理。由于 Handler 涉及到具体的用户业务请求，所以一般情况需要工程师根据业务需求开发 Handler。
+作用：进行视图解析，根据逻辑视图名解析成真正的视图（View ）。View Resolver 负责将处理结果生成 View 视图，View Resolver 首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成 View 视图对象，最后对 View 进行渲染将处理结果通过页面展示给用户。SpringMVC 框架提供了很多的 View 视图类型，包括：jstlView、freemarkerView、pdfView 等。一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由工程师根据业务需求开发具体的页面。
+View 是一个接口，实现类支持不同的 View 类型（jsp、freemarker…）。
+
+  注意：处理器 Handler（也就是我们平常说的 Controller 控制器）以及视图层 View 都是需要我们自己手动开发的。其他的一些组件比如：前端控制器 DispatcherServlet、处理器映射器 HandlerMapping、处理器适配器 HandlerAdapter 等等都是框架提供给我们的，不需要自己手动开发。
+
+@RequestBody：注解实现接收 HTTP 请求的 json 数据，将 json 转换为 Java 对象；
+@ResponseBody：注解实现将 Controller 方法返回对象转化为 json 对象响应给客户。
+RequestMapping 是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。RequestMapping 注解有六个属性，下面我们把它分成三类进行说明。
+value、method：
+method：指定请求的method类型， GET、POST、PUT、DELETE 等；
+consumes、produces：
+produces：指定返回的内容类型，仅当 request 请求头中的（Accept）类型中包含该指定类型才返回；
+params、header：
+headers：指定 request 中必须包含某些指定的 header 值，才能让该方法处理请求。
+1.解决 POST 请求乱码问题：在 web.xml 中配置一个 CharacterEncodingFilter 过滤器，设置成 utf-8；
+（1）修改 tomcat 配置文件添加编码与工程编码一致，如下：
+“`java
+<ConnectorURIEncoding=""utf-8"" connectionTimeout=""20000"" port=""8080"" protocol=""HTTP/1.1"" redirectPort
+ “`
+（2）对参数进行重新编码：
+“`java
+String userName = new String(request.getParamter(""userName"").getBytes(""ISO8859-1""),""utf-8"")
+ “`
+是单例模式，所以在多线程访问的时候有线程安全问题。但是不要使用同步，会影响性能，解决方案是在控制器里面不能写字段。
+“`java
+</p></li>
+<li>重定向：在返回值前面加 ""redirect:""，譬如：
+“`
+
+方法一：实现 HandlerInterceptor 接口；
+方法二：继承适配器类，接着在接口方法当中，实现处理逻辑，然后在 SpringMVC 的配置文件中配置拦截器即可。
+SpringMVC 的入口是一个 Servlet 即前端控制器（DispatchServlet），而 Struts2 入口是一个 filter 过虑器（StrutsPrepareAndExecuteFilter）；
+SpringMVC 是基于方法开发（一个 url 对应一个方法），请求参数传递到方法的形参，可以设计为单例或多例（建议单例），Struts2 是基于类开发，传递参数是通过类的属性，只能设计为多例；
+Struts2 采用值栈存储请求和响应的数据，通过 OGNL 存取数据；SpringMVC 通过参数解析器是将 request 请求内容解析，并给方法形参赋值，将数据和视图封装成 ModelAndView 对象，最后又将 ModelAndView 中的模型数据通过 request 域传输到页面。jsp 视图解析器默认使用 jstl。
+SpringMVC面试题",
+SpringMVC面试题阅读指南,"大家好，我是帅地。
+为了方便大家复习，这些面试题的展示采取了右边面试题目，左边答案的方式，方便大家按需查看。
+由于手机端不支持这种展示方式，当然，为了手机方便阅读，下面会贴出所有面试题答案链接，不过大家最好在 PC 电脑端阅读哈，相关面试题还会持续更新，尽量补充完善起来，建议收藏帅地的网站哦。
+1. 谈谈你对 MVC 模式的理解？
+1. 谈谈你对 MVC 模式的理解？
+2. SpringMVC 的工作原理/执行流程？
+2. SpringMVC 的工作原理/执行流程？
+3. SpringMVC 的核心组件有哪些？
+3. SpringMVC 的核心组件有哪些？
+4. SpringMVC 常用的注解有哪些？
+4. SpringMVC 常用的注解有哪些？
+5. @RequestMapping 的作用是什么？
+5. @RequestMapping 的作用是什么？
+6. 如何解决 POST 请求中文乱码问题，GET 的又如何处理呢？
+6. 如何解决 POST 请求中文乱码问题，GET 的又如何处理呢？
+7. SpringMVC 的控制器是不是单例模式，如果是会有什么问题，怎么解决？
+7. SpringMVC 的控制器是不是单例模式，如果是会有什么问题，怎么解决？
+8. SpringMVC 怎么样设定重定向和转发的？
+8. SpringMVC 怎么样设定重定向和转发的？
+9. SpringMVC 里面拦截器是怎么写的？
+9. SpringMVC 里面拦截器是怎么写的？
+10. SpringMVC 和 Struts2 的区别有哪些?
+10. SpringMVC 和 Struts2 的区别有哪些?
+ Java面试题分类阅读指南（必看）
+ Java面试题分类阅读指南（必看）
+ 操作系统面试题阅读指南（必看）
+ 操作系统面试题阅读指南（必看）
+阅读指南（必看）
+阅读指南（必看）
+MySQL面试题阅读指南（必看）
+MySQL面试题阅读指南（必看）
+ Redis面试题阅读指南（必看）
+ Redis面试题阅读指南（必看）
+消息队列和Zookeeper面试题阅读指南（必看）
+消息队列和Zookeeper面试题阅读指南（必看）
+持续更新～持续更新～持续更新～
+记得收藏呀
+SpringMVC面试题",

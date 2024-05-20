@@ -1,0 +1,46 @@
+﻿问题,回答,所属分类
+字节和字符的区别？,"字节是存储容量的基本单位；
+字符是数字、字母、汉字以及其他语言的各种符号；
+1 字节 = 8 个二进制单位，一个字符由一个字节或多个字节的二进制单位组成。
+Java字符串",
+String 为什么要设计为不可变类？,"在 Java 中将 String 设计成不可变的是综合考虑到各种因素的结果。主要的原因主要有以下三点：
+（1）字符串常量池的需要：字符串常量池是 Java 堆内存中一个特殊的存储区域, 当创建一个 String 对象时，假如此字符串值已经存在于常量池中，则不会创建一个新的对象，而是引用已经存在的对象；
+（2）允许 String 对象缓存 HashCode：Java 中 String 对象的哈希码被频繁地使用, 比如在 HashMap 等容器中。字符串不变性保证了 hash 码的唯一性，因此可以放心地进行缓存。这也是一种性能优化手段，意味着不必每次都去计算新的哈希码；
+（3）String 被许多的 Java 类(库)用来当做参数，例如：网络连接地址 URL、文件路径 path、还有反射机制所需要的 String 参数等, 假若 String 不是固定不变的，将会引起各种安全隐患。
+Java字符串",
+String、StringBuilder、StringBuffer 的区别？,"String：用于字符串操作，属于不可变类；【补充：String 不是基本数据类型，是引用类型，底层用 char 数组实现的】
+StringBuilder：与 StringBuffer 类似，都是字符串缓冲区，但线程不安全；
+StringBuffer：也用于字符串操作，不同之处是 StringBuffer 属于可变类，对方法加了同步锁，线程安全
+StringBuffer的补充
+说明：StringBuffer 中并不是所有方法都使用了 Synchronized 修饰来实现同步：
+执行效率：StringBuilder > StringBuffer > String
+Java字符串",
+String 字符串修改实现的原理？,"当用 String 类型来对字符串进行修改时，其实现方法是首先创建一个 StringBuilder，其次调用 StringBuilder 的 append() 方法，最后调用 StringBuilder 的 toString() 方法把结果返回。
+Java字符串
+Java面试题",
+String str = “i” 与 String str = new String(“i”) 一样吗？,"不一样，因为内存的分配方式不一样。String str = “i” 的方式，Java 虚拟机会将其分配到常量池中；而 String str = new String(“i”) 则会被分到堆内存中。
+在执行 String  str1 = “abc” 的时候，JVM 会首先检查字符串常量池中是否已经存在该字符串对象，如果已经存在，那么就不会再创建了，直接返回该字符串在字符串常量池中的内存地址；如果该字符串还不存在字符串常量池中，那么就会在字符串常量池中创建该字符串对象，然后再返回。所以在执行 String  str2 = “abc” 的时候，因为字符串常量池中已经存在“abc”字符串对象了，就不会在字符串常量池中再次创建了，所以栈内存中 str1 和 str2 的内存地址都是指向 “abc” 在字符串常量池中的位置，所以 str1 = str2 的运行结果为 true。
+而在执行 String  str3 = new  String(“abc”) 的时候，JVM 会首先检查字符串常量池中是否已经存在“abc”字符串，如果已经存在，则不会在字符串常量池中再创建了；如果不存在，则就会在字符串常量池中创建 “abc” 字符串对象，然后再到堆内存中再创建一份字符串对象，把字符串常量池中的 “abc” 字符串内容拷贝到内存中的字符串对象中，然后返回堆内存中该字符串的内存地址，即栈内存中存储的地址是堆内存中对象的内存地址。String  str4 = new  String(“abc”) 是在堆内存中又创建了一个对象，所以 str 3  str4 运行的结果是 false。str1、str2、str3、str4 在内存中的存储状况如下图所示：
+
+Java字符串",
+String 类的常用方法都有那些？,"indexOf()：返回指定字符的索引。
+charAt()：返回指定索引处的字符。
+replace()：字符串替换。
+trim()：去除字符串两端空白。
+split()：分割字符串，返回一个分割后的字符串数组。
+getBytes()：返回字符串的 byte 类型数组。
+length()：返回字符串长度。
+toLowerCase()：将字符串转成小写字母。
+toUpperCase()：将字符串转成大写字符。
+substring()：截取字符串。
+equals()：字符串比较。
+Java字符串",
+final 修饰 StringBuffer 后还可以 append 吗？,"可以。final 修饰的是一个引用变量，那么这个引用始终只能指向这个对象，但是这个对象内部的属性是可以变化的。
+
+  官方文档解释：once a final variable has been assigned, it always contains the same value. If a final variable holds a reference to an object, then the state of the object may be changed by operations on the object, but the variable will always refer to the same object.
+
+Java字符串
+Java面试题",
+Java字符串,"为了方便维护，校对错误等，目前改为只提供一种阅读方式，看这里： Java基础面试题阅读指南
+ Java基础面试题阅读指南
+Java字符串",
