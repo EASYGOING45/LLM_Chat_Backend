@@ -19,7 +19,7 @@ def get_sentiment(text):
     腾讯云-情感分析v2
     """
     try:
-        cred = credential.Credential("AKIDcCczGew6HMGcCeB3DX5b1JUkz7JSQH2V", "jboEsU1kPwNe9bv32uaASmGi5c5Uo7Ws")
+        cred = credential.Credential(settings.SECRET_ID, settings.SECRET_KEY)
 
         httpProfile = HttpProfile()
         httpProfile.endpoint = "nlp.tencentcloudapi.com"

@@ -12,8 +12,8 @@ class LlmChatViewSet(ResourceViewSet):
         ResourceRoute("GET", resource.llm_chat.get_running_models, endpoint="models_list"),
         # 模型对话交互
         ResourceRoute("POST", resource.llm_chat.chat_with_model, endpoint="chat"),
-        # 三方交互
+        # AI模型交互，支持选择Model
         ResourceRoute("POST", resource.llm_chat.chat_with_close_ai, endpoint="chat_third"),
-        # 情感分析
-        ResourceRoute("POST",resource.llm_chat.get_message_sentiment,endpoint="get_sentiment"),
+        # 文本情感分析
+        ResourceRoute("POST", resource.llm_chat.get_message_sentiment, endpoint="get_sentiment"),
     ]
