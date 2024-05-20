@@ -48,3 +48,5 @@ pyinstrument==3.4.2
 
 # json log
 JSON-log-formatter==0.4.0
+
+tencentcloud-sdk-python

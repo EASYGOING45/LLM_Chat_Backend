@@ -1,0 +1,508 @@
+﻿问题,回答,所属分类
+什么是 Spring Boot？,"快问快答：Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件一站式解决方案，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了各种启动器，开发者能快速上手。
+
+官方网站：http://projects.spring.io/spring-boot/
+GitHub源码：https://github.com/spring-projects/spring-boot
+
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot有哪些优点？,"Spring Boot基础
+
+ㅤ普通",
+SpringBoot有哪些缺点？,"任何技术都是有优缺点的，没有银弹，解决一切问题，不留任何小尾巴
+SpringBoot优点概括起来就是简化：简化编码，简化配置，简化部署，简化监控，简化依赖坐标导入，简化整合其他技术….
+SpringBoot的缺点是入门简单精通难，各种强大的功能封装的太好了，内部原理比较难得参透！再就是用多了容易产生依赖，就像嗑药似的，用了就离不开了；SpringBoot一旦出了错误，由于内部封装比较深，部分错误调试难度比一般Spring应用程序要大很多！
+当然完全不必纠结与SpringBoot的缺点，毕竟SpringBoot的优点太突出了。
+Spring Boot基础
+
+ㅤ普通",
+Spring Boot 的核心配置文件有哪几个？它们的区别是什么？,"Spring Boot 的核心配置文件是 application 和 bootstrap 配置文件。
+application 配置文件这个容易理解，主要用于 Spring Boot 项目的自动化配置。
+bootstrap 配置文件有以下几个应用场景。
+Spring Boot基础
+
+ㅤ普通",
+Spring Boot 的配置文件有哪几种格式？它们有什么区别？,".properties 和 .yml，它们的区别主要是书写格式不同。
+1).properties
+app.user.name = javastack
+2).yml
+app:   user:     name: javastack
+另外，.yml 格式不支持 @PropertySource 注解导入配置。
+Spring Boot基础
+
+ㅤ普通",
+Spring Boot 的核心注解是哪个？它主要由哪几个注解组成的？,"主要组合包含了以下 3 个注解：
+Spring Boot基础
+
+ㅤ普通",
+开启 Spring Boot 特性有哪几种方式？,"快问快答
+1）继承spring-boot-starter-parent项目
+2）导入spring-boot-dependencies项目依赖
+详细介绍启动方式
+Spring Boot依赖
+使用Spring Boot很简单，先添加基础依赖包，有以下两种方式
+
+Spring Boot依赖注意点
+
+  This only works if your Maven project inherits (directly or indirectly) from spring-boot-dependencies. If you have added spring-boot-dependencies in your own dependencyManagement section withimportyou have to redefine the artifact yourself instead of overriding the property.
+
+Spring Boot依赖包里面的组件的版本都是和当前Spring Boot绑定的，如果要修改里面组件的版本，只需要添加如下属性覆盖即可，但这种方式只对继承有效，导入的方式无效。
+如果导入的方式要实现版本的升级，达到上面的效果，这样也可以做到，把要升级的组件依赖放到Spring Boot之前。
+
+
+  Each Spring Boot release is designed and tested against a specific set of third-party dependencies. Overriding versions may cause compatibility issues.
+
+需要注意，要修改Spring Boot的依赖组件版本可能会造成不兼容的问题。
+
+使用继承Spring Boot时，如果要使用Maven resource filter过滤资源文件时，资源文件里面的占位符为了使${}和Spring Boot区别开来，此时要用@…@包起来，不然无效。另外，@…@占位符在yaml文件编辑器中编译报错，所以使用继承方式有诸多问题，坑要慢慢趟。
+Spring Boot基础
+
+ㅤ普通",
+什么是JavaConfig？,"Spring JavaConfig 是 Spring 社区的产品，它提供了配置 Spring IoC 容器的纯Java 方法。因此它有助于避免使用 XML 配置。使用 JavaConfig 的优点在于：
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot自动配置原理是什么？,"xxxxProperties:封装配置文件中相关属性；
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot、Spring MVC和Spring有什么区别？,"Spring Boot基础
+
+ㅤ普通",
+SpringBoot启动时都做了什么?,"Spring Boot基础
+
+ㅤ普通",
+SpringBoot 需要独立的容器运行吗？,"可以不需要，内置了 Tomcat/ Jetty 等容器。
+Spring Boot基础
+
+ㅤ普通",
+什么是YAML？,"YAML 是一种人类可读的数据序列化语言。它通常用于配置文件。与属性文件相比，如果我们想要在配置文件中添加复杂的属性，YAML 文件就更加结构化，而且更少混淆。可以看出 YAML 具有分层配置数据。
+Spring Boot基础
+
+ㅤ普通",
+YAML 配置的优势在哪里 ?,"YAML 现在可以算是非常流行的一种配置文件格式了，无论是前端还是后端，都可以见到 YAML 配置。那么 YAML 配置和传统的 properties 配置相比到底有哪些优势呢？
+相比 properties 配置文件，YAML 还有一个缺点，就是不支持 @PropertySource 注解导入自定义的 YAML 配置。
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot 是否可以使用 XML 配置 ?,"Spring Boot 推荐使用 Java 配置而非 XML 配置，但是 Spring Boot 中也可以使用 XML 配置，通过 @ImportResource 注解可以引入一个 XML 配置。
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot核心配置文件是什么？,"bootstrap.properties和application.properties
+Spring Boot基础
+
+ㅤ普通",
+bootstrap.properties和application.properties 有何区别 ?,"SpringBoot两个核心的配置文件：
+Spring Boot基础
+
+ㅤ普通",
+什么是Spring Profiles？,"主要用来区分环境；
+Spring Profiles 允许用户根据配置文件（dev，test，prod 等）来注册 bean。因此，当应用程序在开发中运行时，只有某些 bean 可以加载，而在 PRODUCTION中，某些其他 bean 可以加载。假设我们的要求是 Swagger 文档仅适用于 QA 环境，并且禁用所有其他文档。这可以使用配置文件来完成。Spring Boot 使得使用配置文件非常简单。
+Spring Boot基础
+
+ㅤ普通",
+如何在自定义端口上运行SpringBoot应用程序？,"SpringBoot默认监听的是8080端口；为了在自定义端口上运行 SpringBoot 应用程序，您可以在application.properties 中通过
+指定端口；这样就可以将监听的端口修改为8888。
+Spring Boot基础
+
+ㅤ普通",
+如何实现SpringBoot应用程序的安全性？,"为了实现SpringBoot的安全性，我们使用spring-boot-starter-security依赖项，并且必须添加安全配置。它只需要很少的代码。配置类将必须扩展WebSecurityConfigurerAdapter并覆盖其方法。
+Spring Boot基础
+
+ㅤ普通",
+比较一下Spring Security 和Shiro各自的优缺点 ?,"由于SpringBoot官方提供了大量的非常方便的开箱即用的Starter，包括Spring Security的Starter ，使得在 SpringBoot中使用Spring Security变得更加容易，甚至只需要添加一个依赖就可以保护所有的接口，所以，如果是SpringBoot 项目，一般选择 Spring Security 。当然这只是一个建议的组合，单纯从技术上来说，无论怎么组合，都是没有问题的。Shiro和Spring Security相比，主要有如下一些特点：
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot中如何解决跨域问题 ?,"跨域可以在前端通过 JSONP 来解决，但是 JSONP 只可以发送 GET 请求，无法发送其他类型的请求，在 RESTful 风格的应用中，就显得非常鸡肋，因此我们推荐在后端通过 （CORS，Cross-origin resource sharing） 来解决跨域问题。这种解决方案并非 Spring Boot 特有的，在传统的 SSM 框架中，就可以通过 CORS 来解决跨域问题，只不过之前我们是在 XML 文件中配置 CORS ，现在可以通过实现WebMvcConfigurer接口然后重写addCorsMappings方法解决跨域问题。
+项目中前后端分离部署，所以需要解决跨域的问题。
+我们使用cookie存放用户登录的信息，在spring拦截器进行权限控制，当权限不符合时，直接返回给用户固定的json结果。
+当用户登录以后，正常使用；当用户退出登录状态时或者token过期时，由于拦截器和跨域的顺序有问题，出现了跨域的现象。
+我们知道一个http请求，先走filter，到达servlet后才进行拦截器的处理，如果我们把cors放在filter里，就可以优先于权限拦截器执行。
+Spring Boot基础
+
+ㅤ普通",
+什么是 CSRF 攻击？,"CSRF 代表跨站请求伪造。这是一种攻击，迫使最终用户在当前通过身份验证的Web 应用程序上执行不需要的操作。CSRF 攻击专门针对状态改变请求，而不是数据窃取，因为攻击者无法查看对伪造请求的响应。
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot 中的监视器是什么,"Spring boot actuator是spring启动框架中的重要功能之一。Spring boot监视器可帮助您访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为HTTPURL访问的REST端点来检查状态。
+Spring Boot基础
+
+ㅤ普通",
+如何在SpringBoot中禁用Actuator端点安全性？,"默认情况下，所有敏感的HTTP端点都是安全的，只有具有ACTUATOR角色的用户才能访问它们。安全性是使用标准的
+HttpServletRequest.isUserlnRole 方法实施的。我们可以使用 management.security.enabled=false来禁用安全性。只有在执行机构端点在防火墙后访问时，才建议禁用安全性。
+Spring Boot基础
+
+ㅤ普通",
+如何监视所有SpringBoot微服务？,"SpringBoot提供监视器端点以监控各个微服务的度量。这些端点对于获取有关应用程序的信息（如它们是否已启动）以及它们的组件（如数据库等）是否正常运行很有帮助。但是，使用监视器的一个主要缺点或困难是，我们必须单独打开应用程序的知识点以了解其状态或健康状况。想象一下涉及 50 个应用程序的微服务，管理员将不得不击中所有 50 个应用程序的执行终端。为了帮助我们处理这种情况，我们将使用位于的开源项目。 它建立在 Spring Boot Actuator 之上，它提供了一个 Web UI，使我们能够可视化多个应用程序的度量。
+Spring Boot基础
+
+ㅤ普通",
+什么是 WebSockets？,"WebSocket是一种计算机通信协议，通过单个TCP连接提供全双工通信信道。
+Spring Boot基础
+
+ㅤ普通",
+什么是 Spring Data?,"Spring Data 是 Spring 的一个子项目。用于简化数据库访问，支持NoSQL 和 关系数据存储。其主要目标是使数据库的访问变得方便快捷。Spring Data 具有如下特点：
+SpringData 项目支持 NoSQL 存储：
+SpringData 项目所支持的关系数据存储技术：
+Spring Data Jpa 致力于减少数据访问层 (DAO) 的开发量. 开发者唯一要做的，就是声明持久层的接口，其他都交给 Spring Data JPA 来帮你完成！Spring Data JPA 通过规范方法的名字，根据符合规范的名字来确定方法需要实现什么样的逻辑。
+Spring Boot基础
+
+ㅤ普通",
+什么是 Spring Batch？,"Spring Boot Batch 提供可重用的函数，这些函数在处理大量记录时非常重要，包括日志/跟踪，事务管理，作业处理统计信息，作业重新启动，跳过和资源管理。它还提供了更先进的技术服务和功能，通过优化和分区技术，可以实现极高批量和高性能批处理作业。简单以及复杂的大批量批处理作业可以高度可扩展的方式利用框架处理重要大量的信息。
+Spring Boot基础
+
+ㅤ普通",
+什么是 FreeMarker 模板？,"FreeMarker 是一个基于 Java 的模板引擎，最初专注于使用 MVC 软件架构进行动态网页生成。使用 Freemarker 的主要优点是表示层和业务层的完全分离。程序员可以处理应用程序代码，而设计人员可以处理 html 页面设计。最后使用freemarker 可以将这些结合起来，给出最终的输出页面。
+Spring Boot基础
+
+ㅤ普通",
+如何集成 SpringBoot和ActiveMQ？,"对于集成 Spring Boot 和 ActiveMQ，我们使用依赖关系。 它只需要很少的配置，并且不需要样板代码。
+Spring Boot基础
+
+ㅤ普通",
+Swagger用过麽？他用来做什么？,"Swagger广泛用于可视化API，使用SwaggerUl为前端开发人员提供在线沙箱。Swagger 是用于生成RESTful Web服务的可视化表示的工具，规范和完整框架实现。它使文档能够以与服务器相同的速度更新。当通过Swagger 正确定义时，消费者可以使用最少量的实现逻辑来理解远程服务并与其进行交互。因此，Swagger 消除了调用服务时的猜测。
+Spring Boot基础
+
+ㅤ普通",
+前后端分离，如何维护接口文档 ?,"前后端分离开发日益流行，大部分情况下，我们都是通过 Spring Boot 做前后端分离开发，前后端分离一定会有接口文档，不然会前后端会深深陷入到扯皮中。一个比较笨的方法就是使用 word 或者 md 来维护接口文档，但是效率太低，接口一变，所有人手上的文档都得变。在 Spring Boot 中，这个问题常见的解决方案是 Swagger ，使用 Swagger 我们可以快速生成一个接口文档网站，接口一旦发生变化，文档就会自动更新，所有开发工程师访问这一个在线网站就可以获取到最新的接口文档，非常方便。
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot项目如何热部署？,"这可以使用 DEV 工具来实现。通过这种依赖关系，您可以节省任何更改，嵌入式tomcat 将重新启动。Spring Boot 有一个开发工具（DevTools）模块，它有助于提高开发人员的生产力。Java 开发人员面临的一个主要挑战是将文件更改自动部署到服务器并自动重启服务器。开发人员可以重新加载 Spring Boot 上的更改，而无需重新启动服务器。这将消除每次手动部署更改的需要。Spring Boot 在发布它的第一个版本时没有这个功能。这是开发人员最需要的功能。DevTools 模块完全满足开发人员的需求。该模块将在生产环境中被禁用。它还提供 H2 数据库控制台以更好地测试应用程序。
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot 中的starter到底是什么 ?,"首先，这个 Starter 并非什么新的技术点，基本上还是基于 Spring 已有功能来实现的。首先它提供了一个自动化配置类，一般命名为 XXXAutoConfiguration ，在这个配置类中通过条件注解来决定一个配置是否生效（条件注解就是 Spring 中原本就有的），然后它还会提供一系列的默认配置，也允许开发者根据实际情况自定义相关配置，然后通过类型安全的属性注入将这些配置属性注入进来，新注入的属性会代替掉默认属性。正因为如此，很多第三方框架，我们只需要引入依赖就可以直接使用了。当然，开发者也可以自定义 Starter
+Spring Boot基础
+
+ㅤ普通",
+spring-boot-starter-parent 有什么用?,"新创建一个 SpringBoot 项目，默认都是有 parent 的，这个 parent 就是 spring-boot-starter-parent ，spring-boot-starter-parent 主要有如下作用：
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot 打成的jar和普通的jar有什么区别 ?,"Spring oot 项目最终打包成的 jar 是可执行 jar ，这种 jar 可以直接通过 java -jar xxx.jar 命令来运行，这种 jar 不可以作为普通的 jar 被其他项目依赖，即使依赖了也无法使用其中的类。
+SpringBoot 的 jar 无法被其他项目依赖，主要还是他和普通 jar 的结构不同。普通的 jar 包，解压后直接就是包名，包里就是我们的代码，而 Spring Boot 打包成的可执行 jar 解压后，在 \BOOT-INF\classes 目录下才是我们的代码，因此无法被直接引用。如果非要引用，可以在 pom.xml 文件中增加配置，将 Spring Boot 项目打包成两个 jar ，一个可执行，一个可引用。
+Spring Boot基础
+
+ㅤ普通",
+如何使用SpringBoot实现异常处理？,"Spring 提供了一种使用 ControllerAdvice 处理异常的非常有用的方法。 我们通过实现一个 ControlerAdvice 类，来处理控制器类抛出的所有异常。
+Spring Boot基础
+
+ㅤ普通",
+如何使用SpringBoot实现分页和排序？,"使用Spring Boot实现分页非常简单。使用Spring Data-JPA可以实现将可分页的 org.springframework.data.domain.Pageable传递给存储库方法。
+Spring Boot基础
+
+ㅤ普通",
+微服务中如何实现 session 共享?,"在微服务中，一个完整的项目被拆分成多个不相同的独立的服务，各个服务独立部署在不同的服务器上，各自的 session 被从物理空间上隔离开了，但是经常，我们需要在不同微服务之间共享 session ，常见的方案就是 Spring Session + Redis 来实现 session 共享。将所有微服务的 session 统一保存在 Redis 上，当各个微服务对 session 有相关的读写操作时，都去操作 Redis 上的 session 。这样就实现了 session 共享，Spring Session 基于 Spring 中的代理过滤器实现，使得 session 的同步操作对开发人员而言是透明的，非常简便。
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot 中如何实现定时任务?,"定时任务也是一个常见的需求，SpringBoot 中对于定时任务的支持主要还是来自 Spring 框架。
+在 SpringBoot 中使用定时任务主要有两种不同的方式，一个就是使用 Spring 中的 @Scheduled 注解，另一个则是使用第三方框架 Quartz。
+Spring Boot基础
+
+ㅤ普通",
+SpringBoot 面试题阅读指南,"大家好，我是帅地。
+为了方便大家复习，这些面试题的展示采取了右边面试题目，左边答案的方式，方便大家按需查看。
+由于手机端不支持这种展示方式，当然，为了手机方便阅读，下面会贴出所有面试题答案链接，不过大家最好在 PC 电脑端阅读哈，相关面试题还会持续更新，尽量补充完善起来，建议收藏帅地的网站哦。
+1. 什么是 Spring Boot？
+1. 什么是 Spring Boot？
+2. SpringBoot有哪些优点？
+2. SpringBoot有哪些优点？
+3. SpringBoot有哪些缺点？
+3. SpringBoot有哪些缺点？
+4. Spring Boot 的核心配置文件有哪几个？它们的区别是什么？
+4. Spring Boot 的核心配置文件有哪几个？它们的区别是什么？
+5. Spring Boot 的配置文件有哪几种格式？它们有什么区别？
+5. Spring Boot 的配置文件有哪几种格式？它们有什么区别？
+6. Spring Boot 的核心注解是哪个？它主要由哪几个注解组成的？
+6. Spring Boot 的核心注解是哪个？它主要由哪几个注解组成的？
+7. 开启 Spring Boot 特性有哪几种方式？
+7. 开启 Spring Boot 特性有哪几种方式？
+8. 什么是JavaConfig？
+8. 什么是JavaConfig？
+9. SpringBoot自动配置原理是什么？
+9. SpringBoot自动配置原理是什么？
+10. SpringBoot、Spring MVC和Spring有什么区别？
+10. SpringBoot、Spring MVC和Spring有什么区别？
+11. SpringBoot启动时都做了什么?
+11. SpringBoot启动时都做了什么?
+12. SpringBoot 需要独立的容器运行吗？
+12. SpringBoot 需要独立的容器运行吗？
+13. 什么是YAML？
+13. 什么是YAML？
+14. YAML 配置的优势在哪里 ?
+14. YAML 配置的优势在哪里 ?
+15. SpringBoot 是否可以使用 XML 配置 ?
+15. SpringBoot 是否可以使用 XML 配置 ?
+16. SpringBoot核心配置文件是什么？
+16. SpringBoot核心配置文件是什么？
+17. bootstrap.properties和application.properties 有何区别 ?
+17. bootstrap.properties和application.properties 有何区别 ?
+18. 什么是Spring Profiles？
+18. 什么是Spring Profiles？
+19. 如何在自定义端口上运行SpringBoot应用程序？
+19. 如何在自定义端口上运行SpringBoot应用程序？
+20. 如何实现SpringBoot应用程序的安全性？
+20. 如何实现SpringBoot应用程序的安全性？
+21. 比较一下Spring Security 和Shiro各自的优缺点 ?
+21. 比较一下Spring Security 和Shiro各自的优缺点 ?
+22. SpringBoot中如何解决跨域问题 ?
+22. SpringBoot中如何解决跨域问题 ?
+23. 什么是 CSRF 攻击？
+23. 什么是 CSRF 攻击？
+24. SpringBoot 中的监视器是什么
+24. SpringBoot 中的监视器是什么
+25. 如何在SpringBoot中禁用Actuator端点安全性？
+25. 如何在SpringBoot中禁用Actuator端点安全性？
+26. 如何监视所有SpringBoot微服务？
+26. 如何监视所有SpringBoot微服务？
+27. 什么是 WebSockets？
+27. 什么是 WebSockets？
+28. 什么是 Spring Data?
+28. 什么是 Spring Data?
+29. 什么是 Spring Batch？
+29. 什么是 Spring Batch？
+30. 什么是 FreeMarker 模板？
+30. 什么是 FreeMarker 模板？
+31. 如何集成 SpringBoot和ActiveMQ？
+31. 如何集成 SpringBoot和ActiveMQ？
+32. Swagger用过麽？他用来做什么？
+32. Swagger用过麽？他用来做什么？
+33. 前后端分离，如何维护接口文档 ?
+33. 前后端分离，如何维护接口文档 ?
+34. SpringBoot项目如何热部署？
+34. SpringBoot项目如何热部署？
+35. SpringBoot 中的starter到底是什么 ?
+35. SpringBoot 中的starter到底是什么 ?
+36. spring-boot-starter-parent 有什么用?
+36. spring-boot-starter-parent 有什么用?
+37. SpringBoot 打成的jar和普通的jar有什么区别 ?
+37. SpringBoot 打成的jar和普通的jar有什么区别 ?
+38. 如何使用SpringBoot实现异常处理？
+38. 如何使用SpringBoot实现异常处理？
+39. 如何使用SpringBoot实现分页和排序？
+39. 如何使用SpringBoot实现分页和排序？
+40. 微服务中如何实现 session 共享?
+40. 微服务中如何实现 session 共享?
+41. SpringBoot 中如何实现定时任务?
+41. SpringBoot 中如何实现定时任务?
+42. Spring Boot 中的 starter 到底是什么 ?
+42. Spring Boot 中的 starter 到底是什么 ?
+43. 微服务中如何实现 session 共享 ?
+43. 微服务中如何实现 session 共享 ?
+SpringBoot",
+谈谈你对 MVC 模式的理解？,"MVC 是 Model — View — Controler 的简称，它是一种架构模式，它分离了表现与交互。它被分为三个核心部件：模型、视图、控制器。
+
+Model（模型）：是程序的主体部分，主要包含业务数据和业务逻辑。在模型层，还会涉及到用户发布的服务，在服务中会根据不同的业务需求，更新业务模型中的数据。
+View（视图）：是程序呈现给用户的部分，是用户和程序交互的接口，用户会根据具体的业务需求，在 View 视图层输入自己特定的业务数据，并通过界面的事件交互，将对应的输入参数提交给后台控制器进行处理。
+Controller（控制器）：Controller 是用来处理用户输入数据，以及更新业务模型的部分。控制器中接收了用户与界面交互时传递过来的数据，并根据数据业务逻辑来执行服务的调用和更新业务模型的数据和状态。
+SpringMVC面试题",
+SpringMVC 的工作原理/执行流程？,"简单来说：客户端发送请求-> 前端控制器 DispatcherServlet 接受客户端请求 -> 找到处理器映射 HandlerMapping 解析请求对应的 Handler -> HandlerAdapter 会根据 Handler 来调用真正的处理器来处理请求，并处理相应的业务逻辑 -> 处理器返回一个模型视图 ModelAndView -> 视图解析器进行解析 -> 返回一个视图对象 -> 前端控制器 DispatcherServlet 渲染数据（Model）-> 将得到视图对象返回给用户。
+
+上图用于辅助理解，面试时可用下列 8 步描述 SpringMVC 运行流程：
+DispatcherServlet 对请求 URL 进行解析，得到请求资源标识符（URI）。然后根据该 URI，调用 HandlerMapping 获得该 Handler 配置的所有相关的对象（包括 Handler 对象以及 Handler 对象对应的拦截器），最后以 HandlerExecutionChain 对象的形式返回；
+DispatcherServlet 根据获得的 Handler，选择一个合适的HandlerAdapter；（附注：如果成功获得 HandlerAdapter 后，此时将开始执行拦截器的 preHandler(…)方法）
+提取 Request 中的模型数据，填充 Handler 入参，开始执行Handler（Controller)。在填充 Handler 的入参过程中，根据你的配置，Spring 将帮你做一些额外的工作：
+（1）HttpMessageConveter：将请求消息（如：Json、xml 等数据）转换成一个对象，将对象转换为指定的响应信息；
+（2）数据转换：对请求消息进行数据转换。如：String 转换成 Integer、Double 等；
+（3）数据格式化：对请求消息进行数据格式化。如：将字符串转换成格式化数字或格式化日期等；
+（4）数据验证：验证数据的有效性（长度、格式等），验证结果存储到 BindingResult 或 Error 中;
+Handler 执行完成后，向 DispatcherServlet 返回一个 ModelAndView 对象；
+根据返回的 ModelAndView，选择一个适合的 ViewResolver（必须是已经注册到 Spring 容器中的 ViewResolver)返回给DispatcherServlet；
+ViewResolver 结合 Model 和 View，来渲染视图；
+将渲染结果返回给客户端。
+SpringMVC面试题",
+SpringMVC 的核心组件有哪些？,"作用：Spring MVC 的入口函数。接收请求，响应结果，相当于转发器，中央处理器。有了 DispatcherServlet 减少了其它组件之间的耦合度。用户请求到达前端控制器，它就相当于 MVC 模式中的 C，DispatcherServlet 是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet 的存在降低了组件之间的耦合性。
+作用：根据请求的 url 查找 Handler。HandlerMapping 负责根据用户请求找到 Handler 即处理器（Controller），SpringMVC 提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
+作用：按照特定规则（HandlerAdapter 要求的规则）去执行 Handler。通过 HandlerAdapter 对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。
+注意：编写 Handler 时按照 HandlerAdapter 的要求去做，这样适配器才可以去正确执行 Handler。Handler 是继 DispatcherServlet 前端控制器的后端控制器，在 DispatcherServlet 的控制下 Handler 对具体的用户请求进行处理。由于 Handler 涉及到具体的用户业务请求，所以一般情况需要工程师根据业务需求开发 Handler。
+作用：进行视图解析，根据逻辑视图名解析成真正的视图（View ）。View Resolver 负责将处理结果生成 View 视图，View Resolver 首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成 View 视图对象，最后对 View 进行渲染将处理结果通过页面展示给用户。SpringMVC 框架提供了很多的 View 视图类型，包括：jstlView、freemarkerView、pdfView 等。一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由工程师根据业务需求开发具体的页面。
+View 是一个接口，实现类支持不同的 View 类型（jsp、freemarker…）。
+
+  注意：处理器 Handler（也就是我们平常说的 Controller 控制器）以及视图层 View 都是需要我们自己手动开发的。其他的一些组件比如：前端控制器 DispatcherServlet、处理器映射器 HandlerMapping、处理器适配器 HandlerAdapter 等等都是框架提供给我们的，不需要自己手动开发。
+
+SpringMVC面试题",
+SpringMVC 常用的注解有哪些？,"@RequestMapping：用于处理请求 url 映射的注解，可用于类或方法上。用于类上，则表示类中的所有响应请求的方法都是以该地址作为父路径；
+@RequestBody：注解实现接收 HTTP 请求的 json 数据，将 json 转换为 Java 对象；
+@ResponseBody：注解实现将 Controller 方法返回对象转化为 json 对象响应给客户。
+SpringMVC面试题",
+@RequestMapping 的作用是什么？,"RequestMapping 是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。RequestMapping 注解有六个属性，下面我们把它分成三类进行说明。
+value、method：
+method：指定请求的method类型， GET、POST、PUT、DELETE 等；
+consumes、produces：
+produces：指定返回的内容类型，仅当 request 请求头中的（Accept）类型中包含该指定类型才返回；
+params、header：
+params：指定 request 中必须包含某些参数值是，才让该方法处理。
+headers：指定 request 中必须包含某些指定的 header 值，才能让该方法处理请求。
+SpringMVC面试题",
+如何解决 POST 请求中文乱码问题，GET 的又如何处理呢？,"1.解决 POST 请求乱码问题：在 web.xml 中配置一个 CharacterEncodingFilter 过滤器，设置成 utf-8；
+（1）修改 tomcat 配置文件添加编码与工程编码一致，如下：
+“`java
+<ConnectorURIEncoding=""utf-8"" connectionTimeout=""20000"" port=""8080"" protocol=""HTTP/1.1"" redirectPort
+ “`
+（2）对参数进行重新编码：
+“`java
+String userName = new String(request.getParamter(""userName"").getBytes(""ISO8859-1""),""utf-8"")
+ “`
+SpringMVC面试题",
+SpringMVC 的控制器是不是单例模式，如果是会有什么问题，怎么解决？,"是单例模式，所以在多线程访问的时候有线程安全问题。但是不要使用同步，会影响性能，解决方案是在控制器里面不能写字段。
+SpringMVC面试题",
+SpringMVC 怎么样设定重定向和转发的？,"“`java
+</p></li>
+<li>重定向：在返回值前面加 ""redirect:""，譬如：
+“`
+
+SpringMVC面试题",
+SpringMVC 里面拦截器是怎么写的？,"方法一：实现 HandlerInterceptor 接口；
+方法二：继承适配器类，接着在接口方法当中，实现处理逻辑，然后在 SpringMVC 的配置文件中配置拦截器即可。
+SpringMVC面试题",
+SpringMVC 和 Struts2 的区别有哪些?,"SpringMVC 的入口是一个 Servlet 即前端控制器（DispatchServlet），而 Struts2 入口是一个 filter 过虑器（StrutsPrepareAndExecuteFilter）；
+SpringMVC 是基于方法开发（一个 url 对应一个方法），请求参数传递到方法的形参，可以设计为单例或多例（建议单例），Struts2 是基于类开发，传递参数是通过类的属性，只能设计为多例；
+Struts2 采用值栈存储请求和响应的数据，通过 OGNL 存取数据；SpringMVC 通过参数解析器是将 request 请求内容解析，并给方法形参赋值，将数据和视图封装成 ModelAndView 对象，最后又将 ModelAndView 中的模型数据通过 request 域传输到页面。jsp 视图解析器默认使用 jstl。
+SpringMVC面试题",
+SpringMVC,"MVC 是 Model — View — Controller 的简称，它是一种架构模式，它分离了表现与交互。它被分为三个核心部件：模型、视图、控制器。
+
+Model（模型）：是程序的主体部分，主要包含业务数据和业务逻辑。在模型层，还会涉及到用户发布的服务，在服务中会根据不同的业务需求，更新业务模型中的数据。
+View（视图）：是程序呈现给用户的部分，是用户和程序交互的接口，用户会根据具体的业务需求，在 View 视图层输入自己特定的业务数据，并通过界面的事件交互，将对应的输入参数提交给后台控制器进行处理。
+Controller（控制器）：Controller 是用来处理用户输入数据，以及更新业务模型的部分。控制器中接收了用户与界面交互时传递过来的数据，并根据数据业务逻辑来执行服务的调用和更新业务模型的数据和状态。
+简单来说：客户端发送请求-> 前端控制器 DispatcherServlet 接受客户端请求 -> 找到处理器映射 HandlerMapping 解析请求对应的 Handler -> HandlerAdapter 会根据 Handler 来调用真正的处理器来处理请求，并处理相应的业务逻辑 -> 处理器返回一个模型视图 ModelAndView -> 视图解析器进行解析 -> 返回一个视图对象 -> 前端控制器 DispatcherServlet 渲染数据（Model）-> 将得到视图对象返回给用户。
+
+上图用于辅助理解，面试时可用下列 8 步描述 SpringMVC 运行流程：
+DispatcherServlet 对请求 URL 进行解析，得到请求资源标识符（URI）。然后根据该 URI，调用 HandlerMapping 获得该 Handler 配置的所有相关的对象（包括 Handler 对象以及 Handler 对象对应的拦截器），最后以 HandlerExecutionChain 对象的形式返回；
+DispatcherServlet 根据获得的 Handler，选择一个合适的HandlerAdapter；（附注：如果成功获得 HandlerAdapter 后，此时将开始执行拦截器的 preHandler(…)方法）
+提取 Request 中的模型数据，填充 Handler 入参，开始执行Handler（Controller)。在填充 Handler 的入参过程中，根据你的配置，Spring 将帮你做一些额外的工作：
+（1）HttpMessageConveter：将请求消息（如：Json、xml 等数据）转换成一个对象，将对象转换为指定的响应信息；
+（2）数据转换：对请求消息进行数据转换。如：String 转换成 Integer、Double 等；
+（3）数据格式化：对请求消息进行数据格式化。如：将字符串转换成格式化数字或格式化日期等；
+（4）数据验证：验证数据的有效性（长度、格式等），验证结果存储到 BindingResult 或 Error 中;
+根据返回的 ModelAndView，选择一个适合的 ViewResolver（必须是已经注册到 Spring 容器中的 ViewResolver)返回给DispatcherServlet；
+ViewResolver 结合 Model 和 View，来渲染视图；
+将渲染结果返回给客户端。
+作用：Spring MVC 的入口函数。接收请求，响应结果，相当于转发器，中央处理器。有了 DispatcherServlet 减少了其它组件之间的耦合度。用户请求到达前端控制器，它就相当于 MVC 模式中的 C，DispatcherServlet 是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet 的存在降低了组件之间的耦合性。
+作用：根据请求的 url 查找 Handler。HandlerMapping 负责根据用户请求找到 Handler 即处理器（Controller），SpringMVC 提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
+作用：按照特定规则（HandlerAdapter 要求的规则）去执行 Handler。通过 HandlerAdapter 对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。
+注意：编写 Handler 时按照 HandlerAdapter 的要求去做，这样适配器才可以去正确执行 Handler。Handler 是继 DispatcherServlet 前端控制器的后端控制器，在 DispatcherServlet 的控制下 Handler 对具体的用户请求进行处理。由于 Handler 涉及到具体的用户业务请求，所以一般情况需要工程师根据业务需求开发 Handler。
+作用：进行视图解析，根据逻辑视图名解析成真正的视图（View ）。View Resolver 负责将处理结果生成 View 视图，View Resolver 首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成 View 视图对象，最后对 View 进行渲染将处理结果通过页面展示给用户。SpringMVC 框架提供了很多的 View 视图类型，包括：jstlView、freemarkerView、pdfView 等。一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由工程师根据业务需求开发具体的页面。
+View 是一个接口，实现类支持不同的 View 类型（jsp、freemarker…）。
+
+  注意：处理器 Handler（也就是我们平常说的 Controller 控制器）以及视图层 View 都是需要我们自己手动开发的。其他的一些组件比如：前端控制器 DispatcherServlet、处理器映射器 HandlerMapping、处理器适配器 HandlerAdapter 等等都是框架提供给我们的，不需要自己手动开发。
+
+@RequestBody：注解实现接收 HTTP 请求的 json 数据，将 json 转换为 Java 对象；
+@ResponseBody：注解实现将 Controller 方法返回对象转化为 json 对象响应给客户。
+RequestMapping 是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。RequestMapping 注解有六个属性，下面我们把它分成三类进行说明。
+value、method：
+method：指定请求的method类型， GET、POST、PUT、DELETE 等；
+consumes、produces：
+produces：指定返回的内容类型，仅当 request 请求头中的（Accept）类型中包含该指定类型才返回；
+params、header：
+headers：指定 request 中必须包含某些指定的 header 值，才能让该方法处理请求。
+1.解决 POST 请求乱码问题：在 web.xml 中配置一个 CharacterEncodingFilter 过滤器，设置成 utf-8；
+（1）修改 tomcat 配置文件添加编码与工程编码一致，如下：
+“`java
+<ConnectorURIEncoding=""utf-8"" connectionTimeout=""20000"" port=""8080"" protocol=""HTTP/1.1"" redirectPort
+ “`
+（2）对参数进行重新编码：
+“`java
+String userName = new String(request.getParamter(""userName"").getBytes(""ISO8859-1""),""utf-8"")
+ “`
+是单例模式，所以在多线程访问的时候有线程安全问题。但是不要使用同步，会影响性能，解决方案是在控制器里面不能写字段。
+“`java
+</p></li>
+<li>重定向：在返回值前面加 ""redirect:""，譬如：
+“`
+
+方法一：实现 HandlerInterceptor 接口；
+方法二：继承适配器类，接着在接口方法当中，实现处理逻辑，然后在 SpringMVC 的配置文件中配置拦截器即可。
+SpringMVC 的入口是一个 Servlet 即前端控制器（DispatchServlet），而 Struts2 入口是一个 filter 过虑器（StrutsPrepareAndExecuteFilter）；
+SpringMVC 是基于方法开发（一个 url 对应一个方法），请求参数传递到方法的形参，可以设计为单例或多例（建议单例），Struts2 是基于类开发，传递参数是通过类的属性，只能设计为多例；
+Struts2 采用值栈存储请求和响应的数据，通过 OGNL 存取数据；SpringMVC 通过参数解析器是将 request 请求内容解析，并给方法形参赋值，将数据和视图封装成 ModelAndView 对象，最后又将 ModelAndView 中的模型数据通过 request 域传输到页面。jsp 视图解析器默认使用 jstl。
+SpringMVC面试题",
+SpringMVC面试题阅读指南,"大家好，我是帅地。
+为了方便大家复习，这些面试题的展示采取了右边面试题目，左边答案的方式，方便大家按需查看。
+由于手机端不支持这种展示方式，当然，为了手机方便阅读，下面会贴出所有面试题答案链接，不过大家最好在 PC 电脑端阅读哈，相关面试题还会持续更新，尽量补充完善起来，建议收藏帅地的网站哦。
+1. 谈谈你对 MVC 模式的理解？
+1. 谈谈你对 MVC 模式的理解？
+2. SpringMVC 的工作原理/执行流程？
+2. SpringMVC 的工作原理/执行流程？
+3. SpringMVC 的核心组件有哪些？
+3. SpringMVC 的核心组件有哪些？
+4. SpringMVC 常用的注解有哪些？
+4. SpringMVC 常用的注解有哪些？
+5. @RequestMapping 的作用是什么？
+5. @RequestMapping 的作用是什么？
+6. 如何解决 POST 请求中文乱码问题，GET 的又如何处理呢？
+6. 如何解决 POST 请求中文乱码问题，GET 的又如何处理呢？
+7. SpringMVC 的控制器是不是单例模式，如果是会有什么问题，怎么解决？
+7. SpringMVC 的控制器是不是单例模式，如果是会有什么问题，怎么解决？
+8. SpringMVC 怎么样设定重定向和转发的？
+8. SpringMVC 怎么样设定重定向和转发的？
+9. SpringMVC 里面拦截器是怎么写的？
+9. SpringMVC 里面拦截器是怎么写的？
+10. SpringMVC 和 Struts2 的区别有哪些?
+10. SpringMVC 和 Struts2 的区别有哪些?
+ Java面试题分类阅读指南（必看）
+ Java面试题分类阅读指南（必看）
+ 操作系统面试题阅读指南（必看）
+ 操作系统面试题阅读指南（必看）
+阅读指南（必看）
+阅读指南（必看）
+MySQL面试题阅读指南（必看）
+MySQL面试题阅读指南（必看）
+ Redis面试题阅读指南（必看）
+ Redis面试题阅读指南（必看）
+消息队列和Zookeeper面试题阅读指南（必看）
+消息队列和Zookeeper面试题阅读指南（必看）
+持续更新～持续更新～持续更新～
+记得收藏呀
+SpringMVC面试题",
+Spring面试题阅读指南,"大家好，我是帅地。
+为了方便大家复习，这些面试题的展示采取了右边面试题目，左边答案的方式，方便大家按需查看。
+由于手机端不支持这种展示方式，当然，为了手机方便阅读，下面会贴出所有面试题答案链接，不过大家最好在 PC 电脑端阅读哈，相关面试题还会持续更新，尽量补充完善起来，建议收藏帅地的网站哦。
+1. 使用 Spring 框架的好处是什么？
+1. 使用 Spring 框架的好处是什么？
+2. 解释下什么是 AOP？
+2. 解释下什么是 AOP？
+3. AOP 的代理有哪几种方式？
+3. AOP 的代理有哪几种方式？
+4. 怎么实现 JDK 动态代理？
+4. 怎么实现 JDK 动态代理？
+5. AOP 的基本概念：切面、连接点、切入点等？
+5. AOP 的基本概念：切面、连接点、切入点等？
+6. 通知类型（Advice）型（Advice）有哪些？
+6. 通知类型（Advice）型（Advice）有哪些？
+7. 谈谈你对 IOC 的理解？
+7. 谈谈你对 IOC 的理解？
+8. Bean 的生命周期？
+8. Bean 的生命周期？
+9. Bean 的作用域?
+9. Bean 的作用域?
+10. 谈谈你对 Spring 中的事物的理解？
+10. 谈谈你对 Spring 中的事物的理解？
+11. Spring 中的事务隔离级别？
+11. Spring 中的事务隔离级别？
+12. Spring 中的事物传播行为？
+12. Spring 中的事物传播行为？
+13. Spring 常用的注入方式有哪些？
+13. Spring 常用的注入方式有哪些？
+14. ApplicationContext 通常的实现有哪些?
+14. ApplicationContext 通常的实现有哪些?
+ Java面试题分类阅读指南（必看）
+ Java面试题分类阅读指南（必看）
+ 操作系统面试题阅读指南（必看）
+ 操作系统面试题阅读指南（必看）
+阅读指南（必看）
+阅读指南（必看）
+MySQL面试题阅读指南（必看）
+MySQL面试题阅读指南（必看）
+ Redis面试题阅读指南（必看）
+ Redis面试题阅读指南（必看）
+消息队列和Zookeeper面试题阅读指南（必看）
+消息队列和Zookeeper面试题阅读指南（必看）
+持续更新～持续更新～持续更新～
+记得收藏呀
+Spring面试题",

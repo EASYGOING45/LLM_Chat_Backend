@@ -13,13 +13,27 @@ INSTALLED_APPS += (
     "drf_yasg",
     "modules.llm_chat.apps.LlmChatConfig",
     "modules.user_manage.apps.UserManageConfig",
-    "modules.closeai.apps.CloseaiConfig"
+    "modules.closeai.apps.CloseaiConfig",
+    "modules.knowledge.apps.KnowledgeConfig",
 )
 
 # 跨域中间件
 MIDDLEWARE = ("corsheaders.middleware.CorsMiddleware",) + MIDDLEWARE
 # 自定义中间件
-MIDDLEWARE += ()
+MIDDLEWARE += ()  # noqa
+
+# # TODO：在文档中需要处理CORS与CSRF问题，待跟进README
+# # 在 response 添加 Access-Control-Allow-Credentials, 即允许跨域使用 cookies
+CORS_ALLOW_CREDENTIALS = True
+# 允许所有域名进行跨域请求
+CORS_ALLOW_ALL_ORIGINS = True
+
+# # CORS白名单，需要配置环境变量，线上需要在开发者中心->应用开发->应用引擎->环境配置中添加环境变量
+# CORS_ALLOWED_ORIGINS = [
+#     os.getenv('CORS_ALLOWED_ORIGIN'),     # 允许跨域的域名
+# ]
+
+# print(CORS_ALLOWED_ORIGINS)
 
 # 默认数据库自增字段
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

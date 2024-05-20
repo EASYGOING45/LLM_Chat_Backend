@@ -7,6 +7,7 @@ from modules.llm_chat.serializers import (
     ChatWithModelRequestSerializer,
     GetModelInfoRequestSerializer,
 )
+from core.utils import get_sentiment
 
 
 # TODO：日志&异常处理&序列化器补足&单元测试 0408
@@ -63,3 +64,14 @@ class ChatWithCloseAi(Resource):
         messages = validated_request_data.get("messages")
         data = api.close_ai.chat_with_completions(model="gpt-3.5-turbo", messages=messages)
         return data
+
+
+class GetMessageSentiment(Resource):
+    """
+    情感分析
+    """
+
+    def perform_request(self, validated_request_data):
+        message = validated_request_data.get("message")
+        sentiment = get_sentiment(message)
+        return sentiment
