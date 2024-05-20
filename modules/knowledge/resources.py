@@ -4,9 +4,15 @@ from bk_resource import Resource, api
 from django.utils.translation import gettext_lazy
 
 
-class Demo(Resource):
+class GetKnowledgeList(Resource):
+    """
+    获取知识库列表
+    """
+    name = gettext_lazy("获取知识库列表")
+
     def perform_request(self, validated_request_data):
-        return
+        data = api.knowledge.get_knowledge_list()
+        return data
 
 
 class ChatWithKnowledge(Resource):
@@ -31,6 +37,7 @@ class AccessKnowledgeBase(Resource):
     """
     访问知识库
     """
+    name = gettext_lazy("访问知识库")
 
     def perform_request(self, validated_request_data):
         return validated_request_data

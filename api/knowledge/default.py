@@ -28,3 +28,11 @@ class ChatWithKnowledge(KnowledgeBaseResource):
     """
     action = "api/v1/chat/completions"
     method = "POST"
+
+
+class GetKnowledgeList(KnowledgeBaseResource):
+    """
+    获取知识库列表
+    """
+    action = "api/core/dataset/list"
+    method = "GET"
