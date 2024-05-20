@@ -56,9 +56,9 @@ class ChatWithModel(Resource):
 
 class ChatWithCloseAi(Resource):
     """
-    CLose-AI 模型对话交互
+    自训练模型交互，支持选择Model
     """
-    name = gettext_lazy("CloseAI模型交互")
+    name = gettext_lazy("自训练模型交互，支持选择Model")
 
     def perform_request(self, validated_request_data):
         messages = validated_request_data.get("messages")
@@ -70,6 +70,7 @@ class GetMessageSentiment(Resource):
     """
     情感分析
     """
+    name = gettext_lazy("文本情感分析，三分类")
 
     def perform_request(self, validated_request_data):
         message = validated_request_data.get("message")

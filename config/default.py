@@ -23,8 +23,8 @@ MIDDLEWARE = ("corsheaders.middleware.CorsMiddleware",) + MIDDLEWARE
 MIDDLEWARE += ()  # noqa
 
 # 腾讯云API鉴权
-SECRET_ID = os.getenv("BKPAAS_TENCENT_SECRET_ID")
-SECRET_KEY = os.getenv("BKPAAS_TENCENT_SECRET_KEY")
+SECRET_ID = os.getenv("TENCENT_SECRET_ID")
+SECRET_KEY = os.getenv("TENCENT_SECRET_KEY")
 
 # # TODO：在文档中需要处理CORS与CSRF问题，待跟进README
 # # 在 response 添加 Access-Control-Allow-Credentials, 即允许跨域使用 cookies

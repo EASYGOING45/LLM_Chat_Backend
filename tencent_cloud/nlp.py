@@ -8,7 +8,7 @@ from tencentcloud.common.profile.client_profile import ClientProfile
 from tencentcloud.common.profile.http_profile import HttpProfile
 
 try:
-    cred = credential.Credential("AKIDcCczGew6HMGcCeB3DX5b1JUkz7JSQH2V", "jboEsU1kPwNe9bv32uaASmGi5c5Uo7Ws")
+    cred = credential.Credential("", "")
 
     httpProfile = HttpProfile()
     httpProfile.endpoint = "nlp.tencentcloudapi.com"
