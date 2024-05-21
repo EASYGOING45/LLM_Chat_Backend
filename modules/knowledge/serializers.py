@@ -28,8 +28,15 @@ class KnowledgeDetailRequestSerializer(serializers.Serializer):
     knowledge_id = serializers.CharField(required=True, label=gettext_lazy("知识库ID"))
 
 
-class CollectionRequestSerializer(serializers.Serializer):
+class KnowledgeIdRequestSerializer(serializers.Serializer):
     """
     集合相关CRUD接口-请求序列化器
     """
     dataset_id = serializers.CharField(required=True, label=gettext_lazy("数据库ID"))
+
+
+class CollectionRequestSerializer(serializers.Serializer):
+    """
+    集合相关CRUD接口-请求序列化器
+    """
+    collection_id = serializers.CharField(required=True, label=gettext_lazy("集合ID"))

@@ -62,3 +62,12 @@ class GetCollectionList(KnowledgeBaseResource):
     """
     action = "/api/core/dataset/collection/list"
     method = "POST"
+
+
+class GetCollectionDetail(KnowledgeBaseResource):
+    """
+    查询知识库下集合详情
+    """
+    action = "/api/core/dataset/collection/detail?id={collection_id}"
+    method = "GET"
+    url_keys = ["collection_id"]
