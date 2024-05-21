@@ -71,3 +71,13 @@ class GetCollectionDetail(KnowledgeBaseResource):
     action = "/api/core/dataset/collection/detail?id={collection_id}"
     method = "GET"
     url_keys = ["collection_id"]
+
+
+class DeleteCollection(KnowledgeBaseResource):
+    """
+    删除知识库下的一个集合
+    """
+    action = "/api/core/dataset/collection/delete?id={collection_id}"
+    method = "GET"
+    url_keys = ["collection_id"]
+

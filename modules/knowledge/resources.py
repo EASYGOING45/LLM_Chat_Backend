@@ -77,6 +77,18 @@ class GetCollectionDetail(Resource):
         )
         return data
 
+class DeleteCollection(Resource):
+    """
+    删除知识库下的一个集合
+    """
+    name = gettext_lazy("删除知识库下的一个集合")
+    RequestSerializer = CollectionRequestSerializer
+    def perform_request(self, validated_request_data):
+        data = api.knowledge.delete_collection(
+            collection_id=validated_request_data["collection_id"]
+        )
+        return data
+
 
 class ChatWithKnowledge(Resource):
     """

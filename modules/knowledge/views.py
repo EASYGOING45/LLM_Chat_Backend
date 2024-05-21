@@ -18,5 +18,7 @@ class KnowledgeViewSet(ResourceViewSet):
         # 查询知识库下集合列表
         ResourceRoute("POST", resource.knowledge.get_collection_list, endpoint='collection_list'),
         # 查询集合详情
-        ResourceRoute("GET",resource.knowledge.get_collection_detail, endpoint='collection_detail'),
+        ResourceRoute("GET", resource.knowledge.get_collection_detail, endpoint='collection_detail'),
+        # 删除知识库下的一个集合
+        ResourceRoute("GET",resource.knowledge.delete_collection, endpoint='delete_collection'),
     ]
