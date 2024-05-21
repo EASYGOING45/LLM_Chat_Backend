@@ -20,7 +20,7 @@ INSTALLED_APPS += (
 # 跨域中间件
 MIDDLEWARE = ("corsheaders.middleware.CorsMiddleware",) + MIDDLEWARE
 # 自定义中间件
-MIDDLEWARE += ()  # noqa
+MIDDLEWARE += ("core.middleware.RecordUserBehaviorMiddleware",)  # noqa
 
 # 腾讯云API鉴权
 SECRET_ID = os.getenv("TENCENT_SECRET_ID")
