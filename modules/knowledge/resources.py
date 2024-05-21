@@ -31,6 +31,20 @@ class GetKnowledgeDetail(Resource):
         return data
 
 
+class DeleteKnowledge(Resource):
+    """
+    删除知识库
+    """
+    name = gettext_lazy("删除知识库")
+    RequestSerializer = KnowledgeDetailRequestSerializer
+
+    def perform_request(self, validated_request_data):
+        data = api.knowledge.delete_knowledge(
+            knowledge_id=validated_request_data["knowledge_id"]
+        )
+        return data
+
+
 class ChatWithKnowledge(Resource):
     """
     知识库对话交互
