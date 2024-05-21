@@ -47,3 +47,11 @@ class ItemRequestSerializer(serializers.Serializer):
     知识条目相关CRUD接口-请求序列化器
     """
     item_id = serializers.CharField(required=True, label=gettext_lazy("条目ID"))
+
+
+class KnowledgeSearchRequestSerializer(serializers.Serializer):
+    """
+    知识库搜索对话交互-请求序列化器
+    """
+    dataset_id = serializers.CharField(required=True, label=gettext_lazy("知识库ID"))
+    text = serializers.CharField(required=True, label=gettext_lazy("对话Prompt"))

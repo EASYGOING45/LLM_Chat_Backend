@@ -25,4 +25,6 @@ class KnowledgeViewSet(ResourceViewSet):
         ResourceRoute("POST", resource.knowledge.get_item_list, endpoint='item_list'),
         # 删除知识条目
         ResourceRoute("DELETE", resource.knowledge.delete_item, endpoint='delete_item'),
+        # 知识库搜索对话交互
+        ResourceRoute("POST", resource.knowledge.search_knowledge, endpoint='search_knowledge'),
     ]

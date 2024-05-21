@@ -106,3 +106,11 @@ class DeleteItem(KnowledgeBaseResource):
     action = "/api/core/dataset/item/delete?id={item_id}"
     method = "GET"
     url_keys = ["item_id"]
+
+
+class SearchKnowledge(KnowledgeBaseResource):
+    """
+    知识库对话交互
+    """
+    action = "/api/core/dataset/searchTest"
+    method = "POST"

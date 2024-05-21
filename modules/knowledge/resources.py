@@ -4,7 +4,7 @@ from bk_resource import Resource, api
 from django.utils.translation import gettext_lazy
 
 from modules.knowledge.serializers import ChatWithKnowledgeRequestSerializer, KnowledgeDetailRequestSerializer, \
-    CollectionRequestSerializer, KnowledgeIdRequestSerializer, ItemRequestSerializer
+    CollectionRequestSerializer, KnowledgeIdRequestSerializer, ItemRequestSerializer, KnowledgeSearchRequestSerializer
 
 
 class GetKnowledgeList(Resource):
@@ -134,6 +134,26 @@ class DeleteItem(Resource):
         data = api.knowledge.delete_item(
             item_id=validated_request_data["item_id"],
         )
+        return data
+
+
+class SearchKnowledge(Resource):
+    """
+    知识库对话搜索交互
+    """
+    name = gettext_lazy("知识库对话搜索交互")
+    RequestSerializer = KnowledgeSearchRequestSerializer
+
+    def perform_request(self, validated_request_data):
+        data = api.knowledge.search_knowledge(
+            datasetId=validated_request_data["dataset_id"],
+            text=validated_request_data["text"],
+            limit=5000,
+            similarity=0,
+            searchMode="embedding",
+            usingReRank=False
+        )
+
         return data
 
 
