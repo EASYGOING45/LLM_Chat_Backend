@@ -40,3 +40,10 @@ class CollectionRequestSerializer(serializers.Serializer):
     集合相关CRUD接口-请求序列化器
     """
     collection_id = serializers.CharField(required=True, label=gettext_lazy("集合ID"))
+
+
+class ItemRequestSerializer(serializers.Serializer):
+    """
+    知识条目相关CRUD接口-请求序列化器
+    """
+    item_id = serializers.CharField(required=True, label=gettext_lazy("条目ID"))

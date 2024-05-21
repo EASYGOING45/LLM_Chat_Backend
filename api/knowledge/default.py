@@ -81,3 +81,28 @@ class DeleteCollection(KnowledgeBaseResource):
     method = "GET"
     url_keys = ["collection_id"]
 
+
+class GetDataItemList(KnowledgeBaseResource):
+    """
+    查询知识条目列表
+    """
+    action = "api/core/dataset/data/list"
+    method = "POST"
+
+
+class GetItemDetail(KnowledgeBaseResource):
+    """
+    查询知识条目详情
+    """
+    action = "/api/core/dataset/data/detail?id={item_id}"
+    method = "GET"
+    url_keys = ["item_id"]
+
+
+class DeleteItem(KnowledgeBaseResource):
+    """
+    删除知识条目
+    """
+    action = "/api/core/dataset/item/delete?id={item_id}"
+    method = "GET"
+    url_keys = ["item_id"]

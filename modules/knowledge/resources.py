@@ -4,7 +4,7 @@ from bk_resource import Resource, api
 from django.utils.translation import gettext_lazy
 
 from modules.knowledge.serializers import ChatWithKnowledgeRequestSerializer, KnowledgeDetailRequestSerializer, \
-    CollectionRequestSerializer, KnowledgeIdRequestSerializer
+    CollectionRequestSerializer, KnowledgeIdRequestSerializer, ItemRequestSerializer
 
 
 class GetKnowledgeList(Resource):
@@ -77,15 +77,62 @@ class GetCollectionDetail(Resource):
         )
         return data
 
+
 class DeleteCollection(Resource):
     """
     删除知识库下的一个集合
     """
     name = gettext_lazy("删除知识库下的一个集合")
     RequestSerializer = CollectionRequestSerializer
+
     def perform_request(self, validated_request_data):
         data = api.knowledge.delete_collection(
             collection_id=validated_request_data["collection_id"]
+        )
+        return data
+
+
+class GetItemList(Resource):
+    """
+    查询知识条目列表
+    """
+    name = gettext_lazy("查询知识条目列表")
+    RequestSerializer = CollectionRequestSerializer
+
+    def perform_request(self, validated_request_data):
+        data = api.knowledge.get_data_item_list(
+            pageNum=1,
+            pageSize=10,
+            collectionId=validated_request_data["collection_id"],
+            searchText=""
+        )
+        return data
+
+
+class GetItemDetail(Resource):
+    """
+    查询知识条目详情
+    """
+    name = gettext_lazy("查询知识条目详情")
+    RequestSerializer = ItemRequestSerializer
+
+    def perform_request(self, validated_request_data):
+        data = api.knowledge.get_item_detail(
+            item_id=validated_request_data["item_id"],
+        )
+        return data
+
+
+class DeleteItem(Resource):
+    """
+    删除知识条目
+    """
+    name = gettext_lazy("删除知识条目")
+    RequestSerializer = ItemRequestSerializer
+
+    def perform_request(self, validated_request_data):
+        data = api.knowledge.delete_item(
+            item_id=validated_request_data["item_id"],
         )
         return data
 
