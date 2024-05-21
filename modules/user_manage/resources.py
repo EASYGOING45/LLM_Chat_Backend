@@ -53,3 +53,24 @@ class UpdateUser(Resource):
             "is_active": user.is_active,
             "is_superuser": user.is_superuser,
         }
+
+
+class UserLogin(Resource):
+    """
+    用戶登錄
+    """
+    name = gettext_lazy("用戶登錄")
+
+    def perform_request(self, validated_request_data):
+        users = User.objects.all()
+        users_data = []
+        for user in users:
+            users_data.append(
+                {
+                    "username": user.username,
+                    "is_staff": user.is_staff,
+                    "is_active": user.is_active,
+                    "is_superuser": user.is_superuser,
+                }
+            )
+        return users_data

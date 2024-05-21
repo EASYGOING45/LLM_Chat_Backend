@@ -10,4 +10,6 @@ class UserManageViewSet(ResourceViewSet):
         ResourceRoute("GET", resource.user_manage.get_users, endpoint="users_list"),
         # 更新用户信息
         ResourceRoute("GET", resource.user_manage.update_user, endpoint="update_user"),
+        # 用戶登錄
+        ResourceRoute("POST", resource.user_manage.user_login, endpoint="login"),
     ]
