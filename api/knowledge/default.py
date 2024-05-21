@@ -36,3 +36,21 @@ class GetKnowledgeList(KnowledgeBaseResource):
     """
     action = "api/core/dataset/list"
     method = "GET"
+
+
+class GetKnowledgeDetail(KnowledgeBaseResource):
+    """
+    查询知识库详情
+    """
+    action = "/api/core/dataset/detail?id={knowledge_id}"
+    method = "GET"
+    url_keys = ["knowledge_id"]
+
+
+class DeleteKnowledge(KnowledgeBaseResource):
+    """
+    删除一个知识库，不允许批量删除
+    """
+    action = "/api/core/dataset/delete?id={knowledge_id}"
+    method = "GET"
+    url_keys = ["knowledge_id"]

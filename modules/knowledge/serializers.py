@@ -21,3 +21,8 @@ class ChatWithKnowledgeRequestSerializer(serializers.Serializer):
     chat_id = serializers.CharField(required=True, label=gettext_lazy("对话UID"))
 
 
+class KnowledgeDetailRequestSerializer(serializers.Serializer):
+    """
+    查询知识库详情-请求序列化器
+    """
+    knowledge_id = serializers.CharField(required=True, label=gettext_lazy("知识库ID"))

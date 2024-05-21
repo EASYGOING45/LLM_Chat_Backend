@@ -11,4 +11,6 @@ class KnowledgeViewSet(ResourceViewSet):
         ResourceRoute("POST", resource.knowledge.chat_with_knowledge, endpoint='chat_with_knowledge'),
         # 获取知识库列表
         ResourceRoute("GET", resource.knowledge.get_knowledge_list, endpoint='knowledge_list'),
+        # 查询知识库详情
+        ResourceRoute("GET",resource.knowledge.get_knowledge_detail, endpoint='knowledge_detail'),
     ]

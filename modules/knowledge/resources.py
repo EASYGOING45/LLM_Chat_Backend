@@ -3,7 +3,7 @@
 from bk_resource import Resource, api
 from django.utils.translation import gettext_lazy
 
-from modules.knowledge.serializers import ChatWithKnowledgeRequestSerializer
+from modules.knowledge.serializers import ChatWithKnowledgeRequestSerializer, KnowledgeDetailRequestSerializer
 
 
 class GetKnowledgeList(Resource):
@@ -14,6 +14,20 @@ class GetKnowledgeList(Resource):
 
     def perform_request(self, validated_request_data):
         data = api.knowledge.get_knowledge_list()
+        return data
+
+
+class GetKnowledgeDetail(Resource):
+    """
+    查询知识库详情
+    """
+    name = gettext_lazy("查询知识库详情")
+    RequestSerializer = KnowledgeDetailRequestSerializer
+
+    def perform_request(self, validated_request_data):
+        data = api.knowledge.get_knowledge_detail(
+            knowledge_id=validated_request_data["knowledge_id"]
+        )
         return data
 
 
