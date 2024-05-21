@@ -5,6 +5,8 @@ from django.utils.deprecation import MiddlewareMixin
 import logging
 from django.db.models import F
 
+from modules.llm_chat.models import ApiRequestCount
+
 logger = logging.getLogger(__name__)
 
 
@@ -22,5 +24,10 @@ class RecordUserBehaviorMiddleware(MiddlewareMixin):
                 module_name = match.group(1)
                 api_name = match.group(2)
                 logger.info(f"Module Name:{module_name}, API Name:{api_name}")
+                api_request_count, _ = ApiRequestCount.objects.get_or_create(
+                    api_category=module_name, api_name=api_name
+                )
+                api_request_count.request_count = F('request_count') + 1
+                api_request_count.save()
         except Exception as e:
             logger.exception(f"Unexpected Exception occurs:{e}")
