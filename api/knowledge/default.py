@@ -54,3 +54,11 @@ class DeleteKnowledge(KnowledgeBaseResource):
     action = "/api/core/dataset/delete?id={knowledge_id}"
     method = "GET"
     url_keys = ["knowledge_id"]
+
+
+class GetCollectionList(KnowledgeBaseResource):
+    """
+    查询知识库下集合列表
+    """
+    action = "/api/core/dataset/collection/list"
+    method = "POST"
