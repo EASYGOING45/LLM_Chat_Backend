@@ -19,7 +19,8 @@ class RecordUserBehaviorMiddleware(MiddlewareMixin):
         try:
             username = request.user.username
             # 使用正则表达式提取模块名称和详细接口
-            match = re.match(r'/api/v\d+/(.+?)/(.+?)/', request.path)
+            # match = re.match(r'/api/v\d+/(.+?)/(.+?)/', request.path)
+            match = re.search(r'/api/v\d+/(.+?)/(.+?)/', request.path)
             if match:
                 module_name = match.group(1)
                 api_name = match.group(2)
