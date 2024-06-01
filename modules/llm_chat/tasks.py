@@ -1,11 +1,19 @@
 import logging
+import time
+from datetime import datetime, timedelta
 
+import requests
 from celery.schedules import crontab
 from celery.task import periodic_task
 from django.conf import settings
+from requests import RequestException
+from modules.knowledge.models import InterviewQuestion
+
+from core.utils import extract_ip
 
 # 获取或创建一个logger
 logger = logging.getLogger(__name__)
+
 
 @periodic_task(run_every=crontab())
 def report_custom_monitor_metrics():
@@ -14,12 +22,18 @@ def report_custom_monitor_metrics():
     """
     logger.info("进行自定义指标上报")
 
-    active_tasks = TaskResult.objects.filter(status="STARTED").count()
-    failed_tasks = TaskResult.objects.filter(status="FAILURE").count()
-    success_tasks = TaskResult.objects.filter(status="SUCCESS").count()
-    backup_task_count = MonitorMetrics.objects.first().backup_tasks_counter
+    Cplus_questions = InterviewQuestion.objects.filter(category="C++").count()
+    Golang_questions = InterviewQuestion.objects.filter(category="Golang").count()
+    HTML_questions = InterviewQuestion.objects.filter(category="HTML").count()
+    JAVA_questions = InterviewQuestion.objects.filter(category="Java").count()
+    Vue_questions = InterviewQuestion.objects.filter(category="Vue").count()
+    Spring_questions = InterviewQuestion.objects.filter(category="Spring").count()
+    Python_questions = InterviewQuestion.objects.filter(category="Python").count()
+    Linux_questions = InterviewQuestion.objects.filter(category="Linux").count()
+    categories = InterviewQuestion.objects.values('category').distinct().count()
+    total_questions = InterviewQuestion.objects.count()
 
-    timestamp = int(time.time() * MILLISECONDS_IN_SECOND)
+    timestamp = int(time.time() * 1000)
     proxy_url = settings.APM_METRIC_PUSH_URL
     request_json = {
         "data_id": int(settings.APM_METRIC_ID),
@@ -28,10 +42,16 @@ def report_custom_monitor_metrics():
         "data": [
             {
                 "metrics": {
-                    "active_tasks": active_tasks,
-                    "failed_tasks": failed_tasks,
-                    "success_tasks": success_tasks,
-                    "backup_tasks_count": backup_task_count,
+                    "C++_questions": Cplus_questions,
+                    "Golang_questions": Golang_questions,
+                    "HTML_questions": HTML_questions,
+                    "JAVA_questions": JAVA_questions,
+                    "Vue_questions": Vue_questions,
+                    "Spring_questions": Spring_questions,
+                    "Python_questions": Python_questions,
+                    "Linux_questions": Linux_questions,
+                    "categories": categories,
+                    "total_questions": total_questions,
                 },
                 "target": extract_ip(),
                 "dimension": {"module": "db", "location": "guangdong"},
