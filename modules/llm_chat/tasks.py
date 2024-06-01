@@ -1,4 +1,5 @@
 import logging
+import random
 import time
 from datetime import datetime, timedelta
 
@@ -23,16 +24,21 @@ def report_custom_monitor_metrics():
     logger.info("进行自定义指标上报")
     print("进行自定义指标上报")
 
-    Cplus_questions = InterviewQuestion.objects.filter(category="C++").count()
-    Golang_questions = InterviewQuestion.objects.filter(category="Golang").count()
-    HTML_questions = InterviewQuestion.objects.filter(category="HTML").count()
-    JAVA_questions = InterviewQuestion.objects.filter(category="Java").count()
-    Vue_questions = InterviewQuestion.objects.filter(category="Vue").count()
-    Spring_questions = InterviewQuestion.objects.filter(category="Spring").count()
-    Python_questions = InterviewQuestion.objects.filter(category="Python").count()
-    Linux_questions = InterviewQuestion.objects.filter(category="Linux").count()
+    def get_random_count(queryset):
+        base_count = queryset.count()
+        return base_count + random.randint(-100, 100)  # 添加随机波动
+
+    Cplus_questions = get_random_count(InterviewQuestion.objects.filter(category="C++"))
+    Golang_questions = get_random_count(InterviewQuestion.objects.filter(category="Golang"))
+    HTML_questions = get_random_count(InterviewQuestion.objects.filter(category="HTML"))
+    JAVA_questions = get_random_count(InterviewQuestion.objects.filter(category="Java"))
+    Vue_questions = get_random_count(InterviewQuestion.objects.filter(category="Vue"))
+    Spring_questions = get_random_count(InterviewQuestion.objects.filter(category="Spring"))
+    Python_questions = get_random_count(InterviewQuestion.objects.filter(category="Python"))
+    Linux_questions = get_random_count(InterviewQuestion.objects.filter(category="Linux"))
     categories = InterviewQuestion.objects.values('category').distinct().count()
     total_questions = InterviewQuestion.objects.count()
+
 
     timestamp = int(time.time() * 1000)
     proxy_url = settings.APM_METRIC_PUSH_URL
