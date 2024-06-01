@@ -12,6 +12,12 @@ import csv
 from django.conf import settings
 from modules.knowledge.models import InterviewQuestion
 from django.db import IntegrityError, DataError
+import logging
+import socket
+
+from django.conf import settings
+
+logger = logging.getLogger(__name__)
 
 
 def get_sentiment(text):
@@ -71,3 +77,19 @@ def import_csv_data():
             print(f'Successfully imported {filename}')
 
     print('All files have been imported successfully')
+
+
+def extract_ip():
+    """
+    APM 监控上报，用于获取本机IP
+    """
+    st = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        st.connect((settings.GET_LOCAL_IP_ADDRESS, 1))
+        current_ip = st.getsockname()[0]
+    except socket.error as e:
+        logger.error(f"Error occurred while getting local IP address: {e}")
+        current_ip = settings.GET_LOCAL_IP_DEFAULT_IP
+    finally:
+        st.close()
+    return current_ip

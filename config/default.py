@@ -65,7 +65,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # noqa
 # beat:
 #     command: python manage.py celery beat -l info
 # 不使用时，请修改为 False，并删除项目目录下的 app_desc 文件中 celery 配置
-IS_USE_CELERY = False
+IS_USE_CELERY = True
 
 # CELERY 并发数，默认为 2，可以通过环境变量或者 app_desc 设置
 CELERYD_CONCURRENCY = os.getenv("BK_CELERYD_CONCURRENCY", 2)  # noqa
@@ -153,6 +153,15 @@ AUTH_BACKEND_DOMAIN = SESSION_COOKIE_DOMAIN
 APIGW_ENABLED = bool(strtobool(os.getenv("BKAPP_APIGW_ENABLED", "False")))
 BK_API_URL_TMPL = os.getenv("BK_API_URL_TMPL", "") or os.getenv("BKAPP_API_URL_TMPL", "")
 BK_COMPONENT_API_URL = os.getenv("BK_COMPONENT_API_URL", "") or os.getenv("BKAPP_COMPONENT_API_URL", "")
+
+# APM监控
+APM_METRIC_ID = os.getenv("BKAPP_APM_METRIC_ID", "")
+APM_METRIC_TOKEN = os.getenv("BKAPP_APM_METRIC_TOKEN", "")
+APM_PROXY_IP = os.getenv("BKAPP_APM_PROXY_IP", "")
+APM_PROXY_URL = os.getenv("BKAPP_APM_PROXY_URL", "")
+GET_LOCAL_IP_ADDRESS = os.getenv("BKAPP_GET_LOCAL_IP_ADDRESS", "False")
+GET_LOCAL_IP_DEFAULT_IP = os.getenv("BKAPP_GET_LOCAL_IP_DEFAULT_IP", "")
+APM_METRIC_PUSH_URL = os.getenv("BKAPP_APM_METRIC_PUSH_URL", "")
 
 # cache
 REDIS_HOST = os.getenv("REDIS_HOST")
