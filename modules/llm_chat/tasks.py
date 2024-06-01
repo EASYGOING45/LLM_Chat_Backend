@@ -21,6 +21,7 @@ def report_custom_monitor_metrics():
     上报自定义监控指标
     """
     logger.info("进行自定义指标上报")
+    print("进行自定义指标上报")
 
     Cplus_questions = InterviewQuestion.objects.filter(category="C++").count()
     Golang_questions = InterviewQuestion.objects.filter(category="Golang").count()
@@ -60,10 +61,13 @@ def report_custom_monitor_metrics():
         ],
     }
     logger.info("自定义指标上报完成")
+    print("自定义指标上报元数据组装完毕")
     try:
         response = requests.post(proxy_url, json=request_json)
         response_text = response.text
         logger.info(f"自定义指标上报成功，响应：{response_text}")
+        print("上报成功：", response_text)
     except RequestException as e:
         response_text = str(e)
         logger.error(f"自定义指标上报失败，响应：{response_text}", exc_info=True)
+        print("上报失败")
