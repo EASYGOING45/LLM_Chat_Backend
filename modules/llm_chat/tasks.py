@@ -43,7 +43,7 @@ def report_custom_monitor_metrics():
         "data": [
             {
                 "metrics": {
-                    "C++_questions": Cplus_questions,
+                    "Cplus_questions": Cplus_questions,
                     "Golang_questions": Golang_questions,
                     "HTML_questions": HTML_questions,
                     "JAVA_questions": JAVA_questions,
